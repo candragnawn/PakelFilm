@@ -12,7 +12,7 @@ import {
 const NavigationBar = () => {
   return (
     <div>
-      <Navbar variant="dark">
+      <Navbar variant="dark" fixed="top">
         <Container className="d-flex justify-content-between">
           <Navbar.Brand href="/">PAKELFILMS</Navbar.Brand>
           <Nav>
@@ -22,21 +22,21 @@ const NavigationBar = () => {
             <Nav.Link href="#superhero">SUPERHERO</Nav.Link>
           </Nav>
         </Container>
-        <Form className="m-3">
+        <Form className="m-2">
           <Row>
             <Col>
               <Form.Control
                 type="input"
                 placeholder="search.."
-                className="bg-transparent rounded rounded-8 p-2"
+                className=" search-input bg-transparent rounded-8 p-2 border-rounded"
                 style={{ width: "300px" }}
               />
             </Col>
             <Col>
               <Button
-                variant="light"
+                variant="dark"
                 onClick={() => console.log("search")}
-                className="px-4 "
+                className="px-4 rounded-8 "
               >
                 search
               </Button>

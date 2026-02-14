@@ -3,16 +3,16 @@ import NavigationBar from "./components/NavigationBar";
 import Intro from "./components/Intro";
 import Trending from "./components/Trending";
 import SuperHero from "./components/Superhero";
+import HeroSection from "./components/main";
 
 import "./style/landingPage.css";
 
 function App() {
   return (
     <div>
-      <div className="myBG">
+      <div className="hero-section">
         <NavigationBar />
-        <searchBar />
-        <Intro />
+        <HeroSection />
       </div>
 
       <div className="trending">
