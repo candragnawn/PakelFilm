@@ -16,8 +16,8 @@ const NavigationBar = () => {
         <Container className="d-flex justify-content-between">
           <Navbar.Brand href="/">PAKELFILMS</Navbar.Brand>
           <Nav>
-            <Nav.Link href="#trending">TRENDING</Nav.Link>
-            <Nav.Link href="#superhero">SUPERHERO</Nav.Link>
+            <Nav.Link href="#trending">HOME</Nav.Link>
+            <Nav.Link href="#superhero">PROFILE</Nav.Link>
             <Nav.Link href="#superhero">SUPERHERO</Nav.Link>
             <Nav.Link href="#superhero">SUPERHERO</Nav.Link>
           </Nav>

@@ -12,6 +12,7 @@ function App() {
     <div>
       <div className="hero-section">
         <NavigationBar />
+        <Intro />
         <HeroSection />
       </div>
 

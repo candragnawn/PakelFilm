@@ -11,10 +11,24 @@ body {
   background-color: #000;
 }
 
+.intro {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  z-index: 10;
+}
+
 .hero-img {
   height: 100vh;
   object-fit: cover;
   filter: brightness(0.4);
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
 
 .search-input {

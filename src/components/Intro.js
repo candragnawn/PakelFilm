@@ -1,12 +1,12 @@
-import { Col, Container, Row, Button } from "react-bootstrap"
+import { Col, Container, Row, Button } from "react-bootstrap";
 
 const Intro = () => {
   return (
-    <div className="intro">
-      <Container className="text-white text-center d-flex justify-content-center align-items-center">
+    <div className="intro d-flex align-items-center justify-content-center">
+      <Container className=" text-white text-center d-flex justify-content-center align-items-center">
         <Row>
           <Col>
-            <div className="title">NONTON GRATIS</div>
+            <div className="title">Nonton</div>
             <div className="title">GAK PAKE KARCIS</div>
             <div className="introButton mt-4 text-center">
               <Button variant="dark">Lihat Semua List</Button>
@@ -15,7 +15,7 @@ const Intro = () => {
         </Row>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default Intro
+export default Intro;
