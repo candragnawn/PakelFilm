@@ -2,14 +2,22 @@ import { Col, Container, Row, Button } from "react-bootstrap";
 
 const Intro = () => {
   return (
-    <div className="intro d-flex align-items-center justify-content-center">
-      <Container className=" text-white text-center d-flex justify-content-center align-items-center">
+    <div className="intro align-items-start text-white">
+      <Container>
         <Row>
           <Col>
-            <div className="title">Nonton</div>
-            <div className="title">GAK PAKE KARCIS</div>
-            <div className="introButton mt-4 text-center">
-              <Button variant="dark">Lihat Semua List</Button>
+            <p className="caption">NONTON FILM</p>
+            <h1 className="title">Nonton</h1>
+            <p className="caption mb-2">GAK PAKE KARCIS</p>
+
+            <div className="introButton mt-4 ">
+              <Row>
+                <Col className=" d-flex gap-3">
+                  <Button variant="dark p-3 rounded-lg">Play</Button>
+
+                  <Button variant="dark">Lihat Semua List</Button>
+                </Col>
+              </Row>
             </div>
           </Col>
         </Row>
