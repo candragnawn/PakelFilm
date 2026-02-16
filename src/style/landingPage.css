@@ -32,6 +32,7 @@ body {
 }
 
 .hero-section {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -79,8 +80,12 @@ body {
 }
 
 .section-heading {
+  display: flex;
+  gap: 2;
   position: absolute;
   z-index: 12;
+  overflow-x: auto;
+  align-items: end;
 }
 
 .trending {
@@ -109,4 +114,99 @@ body {
   height: 400px;
   width: auto;
   object-fit: cover;
+}
+
+.modern-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    border 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 4px solid transparent;
+  background-color: #1a1a1a;
+  aspect-ratio: 16 / 9;
+}
+
+.modern-card:hover,
+.modern-card.active {
+  transform: scale(1.05);
+  border-color: #fff;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(255, 255, 255, 0.3);
+  z-index: 10;
+}
+
+.modern-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.modern-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 15px;
+  color: white;
+}
+
+.platform-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.modern-card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.horizontal-scroll-wrapper {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+  scrollbar-width: none;
+}
+
+.horizontal-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-scroll-item {
+  flex: 0 0 calc(25% - 15px);
+  min-width: 280px;
+}
+
+@media (max-width: 768px) {
+  .horizontal-scroll-item {
+    flex: 0 0 calc(50% - 10px);
+    min-width: 200px;
+  }
 }
