@@ -2,49 +2,31 @@ import {
   Navbar,
   Container,
   Nav,
-  Row,
-  Col,
   Form,
-  FormControl,
-  Button,
 } from "react-bootstrap";
 
 const NavigationBar = () => {
   return (
-    <div>
-      <Navbar variant="dark" fixed="top">
-        <Container className="d-flex justify-content-between">
-          <Navbar.Brand href="/">PAKELFILMS</Navbar.Brand>
-          <Nav>
-            <Nav.Link href="#trending">HOME</Nav.Link>
-            <Nav.Link href="#superhero">PROFILE</Nav.Link>
-            <Nav.Link href="#superhero">SUPERHERO</Nav.Link>
-            <Nav.Link href="#superhero">SUPERHERO</Nav.Link>
-          </Nav>
-        </Container>
-        <Form className="m-2">
-          <Row>
-            <Col>
-              <Form.Control
-                type="input"
-                placeholder="search.."
-                className=" search-input bg-transparent rounded-8 p-2 border-rounded"
-                style={{ width: "300px" }}
-              />
-            </Col>
-            <Col>
-              <Button
-                variant="dark"
-                onClick={() => console.log("search")}
-                className="px-4 rounded-8 "
-              >
-                search
-              </Button>
-            </Col>
-          </Row>
+    <Navbar variant="dark" fixed="top" className="navbar-custom">
+      <Container>
+        <Navbar.Brand href="/" className="fw-medium">PAKELFILMS</Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link href="#trending">HOME</Nav.Link>
+          <Nav.Link href="#superhero">PROFILE</Nav.Link>
+          <Nav.Link href="#superhero">SUPERHERO</Nav.Link>
+        </Nav>
+        <Form className="d-flex align-items-center">
+          <div className="search-wrapper">
+            <i className="bi bi-search search-icon"></i>
+            <Form.Control
+              type="search"
+              placeholder="Search for movies or TV shows"
+              className="search-input-modern"
+            />
+          </div>
         </Form>
-      </Navbar>
-    </div>
+      </Container>
+    </Navbar>
   );
 };
 
