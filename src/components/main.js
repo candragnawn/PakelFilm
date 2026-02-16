@@ -14,7 +14,7 @@ const HeroSection = () => {
             alt="Slide image alt"
           />
           <Carousel.Caption className="hero-txt">
-            <p>Caption for slide</p>
+           
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -24,7 +24,7 @@ const HeroSection = () => {
             alt="Slide image alt"
           />
           <Carousel.Caption className="hero-txt">
-            <p>Caption for slide</p>
+          
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -34,7 +34,7 @@ const HeroSection = () => {
             alt="Slide image alt"
           />
           <Carousel.Caption className="hero-txt">
-            <p>Caption for slide</p>
+           
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

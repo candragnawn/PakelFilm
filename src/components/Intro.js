@@ -3,7 +3,7 @@ import PlayImage from "../assets/icons/play.png";
 
 const Intro = () => {
   return (
-    <div className="intro align-items-start text-white">
+    <div className="intro align-items-center text-white">
       <Container>
         <Row>
           <Col>
@@ -19,23 +19,6 @@ const Intro = () => {
                   <Button variant="dark">Lihat Semua List</Button>
                 </Col>
               </Row>
-            </div>
-          </Col>
-          <Col className="d-flex align-items-center justify-content-end">
-            <div className="p-10">
-              <a href="">
-                {" "}
-                <img
-                  src={PlayImage}
-                  alt="play image"
-                  style={{
-                    width: "100px",
-                    height: "auto",
-                    filter: "brightness(0) invert(0.7)",
-                    backgroundColor: "transparent",
-                  }}
-                ></img>
-              </a>
             </div>
           </Col>
         </Row>

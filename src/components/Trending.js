@@ -1,4 +1,5 @@
-import { Card, Container, Row, Col, Image } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import ModernMovieCard from "./ModernMovieCard";
 import duneImage from "../assets/images/trending/dune.jpg";
 import everythingImage from "../assets/images/trending/everything.jpg";
 import infiniteImage from "../assets/images/trending/infinite.jpg";
@@ -7,126 +8,30 @@ import lightyearImage from "../assets/images/trending/lightyear.jpg";
 import morbiusImage from "../assets/images/trending/morbius.jpg";
 
 const Trending = () => {
+  const trendingMovies = [
+    { title: "DUNE", image: duneImage, platform: "HBOMax" },
+    { title: "EVERYTHING EVERWHERE", image: everythingImage, platform: "A24" },
+    { title: "INFINITE", image: infiniteImage, platform: "Sky Cinema" },
+    { title: "JOKER", image: jokerImage, platform: "HBOMax" },
+    { title: "LIGHT YEAR", image: lightyearImage, platform: "Disney+" },
+    { title: "MORBIUS", image: morbiusImage, platform: "Sony" },
+  ];
+
   return (
-    <div>
+    <div id="trending" className="py-5">
       <Container>
-        <br />
-        <h2 className="text-white">TRENDING MOVIES</h2>
-        <br />
-        <Row>
-          <Col md={3} className="movieWrapper" id="trending">
-            <Card className="movieImage">
-              <Image src={duneImage} alt="Dune Movies" className="images" />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">DUNE</Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 3 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          <Col md={3} className="movieWrapper">
-            <Card className="movieImage">
-              <Image
-                src={everythingImage}
-                alt="Dune Movies"
-                className="images"
+        <h3 className="text-white">TRENDING MOVIES</h3>
+        <div className="horizontal-scroll-wrapper">
+          {trendingMovies.map((movie, index) => (
+            <div key={index} className="horizontal-scroll-item">
+              <ModernMovieCard
+                title={movie.title}
+                image={movie.image}
+                platform={movie.platform}
               />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">
-                    EVERYTHING EVERWHERE
-                  </Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 3 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          <Col md={3} className="movieWrapper">
-            <Card className="movieImage">
-              <Image src={infiniteImage} alt="Dune Movies" className="images" />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">INFINITE</Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 3 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          <Col md={3} className="movieWrapper">
-            <Card className="movieImage">
-              <Image src={jokerImage} alt="Dune Movies" className="images" />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">JOKER</Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 3 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          <Col md={3} className="movieWrapper">
-            <Card className="movieImage">
-              <Image
-                src={lightyearImage}
-                alt="Dune Movies"
-                className="images"
-              />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">LIGHT YEAR</Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 3 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          <Col md={3} className="movieWrapper">
-            <Card className="movieImage">
-              <Image src={morbiusImage} alt="Dune Movies" className="images" />
-              <div className="bg-dark">
-                <div className="p-2 m-1 text-white">
-                  <Card.Title className="text-center">MORBIUS</Card.Title>
-                  <Card.Text className="text-left">
-                    This is a wider card with natural lead-in to additional
-                    content
-                  </Card.Text>
-                  <Card.Text className="text-left">
-                    Last updated 3 mins ago
-                  </Card.Text>
-                </div>
-              </div>
-            </Card>
-          </Col>
-        </Row>
+            </div>
+          ))}
+        </div>
       </Container>
     </div>
   );

@@ -9,15 +9,15 @@ import "./style/landingPage.css";
 
 function App() {
   return (
-    <div>
+    <div className="bg-dark">
       <div className="hero-section">
         <NavigationBar />
         <Intro />
         <HeroSection />
-      </div>
-
-      <div className="superhero">
-        <SuperHero />
+        <div className="superhero-overlay">
+          <SuperHero />
+          <Trending />
+        </div>
       </div>
     </div>
   );

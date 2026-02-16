@@ -2,18 +2,22 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  background-color: #000;
 }
 
 .hero-container {
-  position: relative;
-  align-items: center;
+  position: fixed !important;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
+  z-index: 0;
   background-color: #000;
 }
 
 .intro {
-  position: absolute;
+  position: relative;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -21,28 +25,39 @@ body {
   z-index: 10;
   pointer-events: none;
 }
+
 .intro .container {
   pointer-events: auto;
 }
 
 .hero-img {
   height: 100vh;
+  width: 100%;
   object-fit: cover;
-  filter: brightness(0.4);
+  filter: brightness(0.3);
 }
 
 .hero-section {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: start;
   z-index: 1;
 }
 
+.superhero-overlay {
+  position: relative;
+  z-index: 20;
+  padding-bottom: 100px;
+  background: transparent;
+  margin-top: -20vh; 
+}
+
+
 .carousel-control-prev,
 .carousel-control-next {
-  z-index: 20;
+  z-index: 30 ;
   cursor: pointer;
+  position: fixed ;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .search-input {
@@ -53,67 +68,26 @@ body {
 .hero-txt {
   font-size: 1rem;
 }
-.intro {
-  height: 300px;
-  display: flex;
-  justify-content: end;
-  align-items: end;
-}
+
 .carousel-img {
-  height: 600px;
+  height: 100vh;
   object-fit: cover;
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: bold;
-  line-height: 4;
-  text-shadow: 2px 2px black;
-  letter-spacing: 4px;
+  line-height: 1.2;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
 }
+
 .caption {
   font-size: 1rem;
-  font-weight: 2800;
-  line-height: 1;
-  text-shadow: 2px 2px black;
-  letter-spacing: 4px;
-}
-
-.section-heading {
-  display: flex;
-  gap: 2;
-  position: absolute;
-  z-index: 12;
-  overflow-x: auto;
-  align-items: end;
-}
-
-.trending {
-  height: auto;
-  background: url("../assets/images/bg/scifi.jpg");
-  background-size: cover;
-}
-
-.superhero {
-  height: auto;
-  background: url("../assets/images/bg/spiderman.jpg");
-  background-size: cover;
-}
-
-.movieWrapper {
-  margin-bottom: 30px;
-}
-
-.movieImage {
-  background-color: black;
-  margin: 5px;
-  padding: 5px;
-}
-
-.images {
-  height: 400px;
-  width: auto;
-  object-fit: cover;
+  font-weight: 500;
+  line-height: 1.5;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
 }
 
 .modern-card {
@@ -190,8 +164,8 @@ body {
 .horizontal-scroll-wrapper {
   display: flex;
   overflow-x: auto;
-  gap: 20px;
-  padding: 20px 0;
+  gap: 25px; /* Increased gap */
+  padding: 20px 40px; /* Added 40px side padding */
   scrollbar-width: none;
 }
 
@@ -202,6 +176,17 @@ body {
 .horizontal-scroll-item {
   flex: 0 0 calc(25% - 15px);
   min-width: 280px;
+}
+
+/* Targeted Container Widths for Movie Sections - Ensuring Parity */
+#superhero .container,
+#trending .container {
+  max-width: 95% !important;
+  width: 95% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 @media (max-width: 768px) {

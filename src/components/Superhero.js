@@ -15,12 +15,13 @@ const SuperHero = () => {
     { title: "ROBIN HOOD", image: robinhoodImage, platform: "Disney+" },
     { title: "SPIDERMAN", image: spidermanImage, platform: "NETFLIX" },
     { title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
+    { title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
+    { title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
   ];
 
   return (
-    <div id="superhero">
+    <div id="superhero" className="py-5">
       <Container>
-        <br />
         <h3 className="text-white">SUPERHERO MOVIES</h3>
         <div className="horizontal-scroll-wrapper">
           {movies.map((movie, index) => (
