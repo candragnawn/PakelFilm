@@ -30,7 +30,6 @@ const SuperHero = () => {
                 title={movie.title}
                 image={movie.image}
                 platform={movie.platform}
-                isActive={index === 0}
               />
             </div>
           ))}
