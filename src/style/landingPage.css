@@ -31,6 +31,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: start;
+  z-index: 1;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  z-index: 5;
 }
 
 .search-input {
@@ -55,7 +61,7 @@ body {
 .title {
   font-size: 3rem;
   font-weight: bold;
-  line-height: 6;
+  line-height: 4;
   text-shadow: 2px 2px black;
   letter-spacing: 4px;
 }

@@ -1,4 +1,5 @@
 import { Col, Container, Row, Button } from "react-bootstrap";
+import PlayImage from "../assets/icons/play.png";
 
 const Intro = () => {
   return (
@@ -18,6 +19,22 @@ const Intro = () => {
                   <Button variant="dark">Lihat Semua List</Button>
                 </Col>
               </Row>
+            </div>
+          </Col>
+          <Col className="d-flex align-items-center justify-content-end">
+            <div className="p-10">
+              <a href="">
+                {" "}
+                <img
+                  src={PlayImage}
+                  alt="play image"
+                  style={{
+                    width: "100px",
+                    height: "auto",
+                    filter: "brightness(0) invert(1)",
+                  }}
+                ></img>
+              </a>
             </div>
           </Col>
         </Row>
