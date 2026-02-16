@@ -11,7 +11,7 @@ const Trending = () => {
     <div>
       <Container>
         <br />
-        <h1 className="text-white">TRENDING MOVIES</h1>
+        <h2 className="text-white">TRENDING MOVIES</h2>
         <br />
         <Row>
           <Col md={3} className="movieWrapper" id="trending">

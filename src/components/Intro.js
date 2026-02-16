@@ -31,7 +31,8 @@ const Intro = () => {
                   style={{
                     width: "100px",
                     height: "auto",
-                    filter: "brightness(0) invert(1)",
+                    filter: "brightness(0) invert(0.7)",
+                    backgroundColor: "transparent",
                   }}
                 ></img>
               </a>

@@ -4,6 +4,7 @@ import Intro from "./components/Intro";
 import Trending from "./components/Trending";
 import SuperHero from "./components/Superhero";
 import HeroSection from "./components/main";
+import SectionHeading from "./components/section-heading";
 
 import "./style/landingPage.css";
 
@@ -14,6 +15,7 @@ function App() {
         <NavigationBar />
         <Intro />
         <HeroSection />
+        <SectionHeading />
       </div>
 
       <div className="trending">
