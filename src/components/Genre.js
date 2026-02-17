@@ -2,14 +2,24 @@ import { Navbar, Container, Nav, Row, Col } from "react-bootstrap";
 
 const Genre = () => {
   return (
-    <div className="d-flex  horizontal-scroll-wrapper">
+    <div className="d-flex horizontal-scroll-wrapper">
       <Container>
-        <Nav className="me-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#link">Link</Nav.Link>
-          <Nav.Link href="#link">Link</Nav.Link>
-          <Nav.Link href="#link">Link</Nav.Link>
-          <Nav.Link href="#link">Link</Nav.Link>
+        <Nav className="me-auto te">
+          <Nav.Link href="#home" className="genre-text">
+            Home
+          </Nav.Link>
+          <Nav.Link href="#link" className="genre-text">
+            Link
+          </Nav.Link>
+          <Nav.Link href="#link" className="genre-text">
+            Link
+          </Nav.Link>
+          <Nav.Link href="#link" className="genre-text">
+            Link
+          </Nav.Link>
+          <Nav.Link href="#link" className="genre-text">
+            Link
+          </Nav.Link>
         </Nav>
       </Container>
     </div>
