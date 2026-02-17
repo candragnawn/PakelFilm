@@ -8,6 +8,8 @@ import lightyearImage from "../assets/images/trending/lightyear.jpg";
 import morbiusImage from "../assets/images/trending/morbius.jpg";
 
 const Trending = () => {
+  const [movies, setMovies] = useState([]);
+  const IMG_URL = process.env.REACT_APP_BASEIMGURL;
   const trendingMovies = [
     { title: "DUNE", image: duneImage, platform: "HBOMax" },
     { title: "EVERYTHING EVERWHERE", image: everythingImage, platform: "A24" },
