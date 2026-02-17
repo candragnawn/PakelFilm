@@ -1,27 +1,16 @@
 import "./App.css";
 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Router } from "react-router-dom";
+import Home from "./pages/PageHome.jsx";
 
 import "./style/landingPage.css";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-dark">
-        <div className="hero-section">
-          <NavigationBar />
-          <Intro />
-          <HeroSection />
-
-          <div className="content-overlay">
-            <div className="Genre-container d-flex justify-content-center">
-              <Genre />
-            </div>
-            <SuperHero />
-            <Trending />
-          </div>
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </BrowserRouter>
   );
 }
