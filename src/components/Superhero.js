@@ -22,7 +22,7 @@ const SuperHero = () => {
   return (
     <div id="superhero" className="py-5">
       <Container>
-        <h3 className="text-white">SUPERHERO MOVIES</h3>
+        <h4 className="text-white">SUPERHERO MOVIES</h4>
         <div className="horizontal-scroll-wrapper">
           {movies.map((movie, index) => (
             <div key={index} className="horizontal-scroll-item">

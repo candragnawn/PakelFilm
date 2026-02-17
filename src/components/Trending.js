@@ -1,34 +1,35 @@
 import { Container } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
-import duneImage from "../assets/images/trending/dune.jpg";
-import everythingImage from "../assets/images/trending/everything.jpg";
-import infiniteImage from "../assets/images/trending/infinite.jpg";
-import jokerImage from "../assets/images/trending/joker.jpg";
-import lightyearImage from "../assets/images/trending/lightyear.jpg";
-import morbiusImage from "../assets/images/trending/morbius.jpg";
+
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Trending = () => {
-  const [movies, setMovies] = useState([]);
+  const [trendMovies, setMovies] = useState([]);
   const IMG_URL = process.env.REACT_APP_BASEIMGURL;
-  const trendingMovies = [
-    { title: "DUNE", image: duneImage, platform: "HBOMax" },
-    { title: "EVERYTHING EVERWHERE", image: everythingImage, platform: "A24" },
-    { title: "INFINITE", image: infiniteImage, platform: "Sky Cinema" },
-    { title: "JOKER", image: jokerImage, platform: "HBOMax" },
-    { title: "LIGHT YEAR", image: lightyearImage, platform: "Disney+" },
-    { title: "MORBIUS", image: morbiusImage, platform: "Sony" },
-  ];
+
+  useEffect(() => {
+    const fetchTrending = async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_APIKEY}`,
+      );
+
+      const data = await response.json();
+      setMovies(data.results);
+    };
+    fetchTrending();
+  }, []);
 
   return (
     <div id="trending" className="py-5">
       <Container>
-        <h3 className="text-white">TRENDING MOVIES</h3>
+        <h4 className="text-white">TRENDING MOVIES</h4>
         <div className="horizontal-scroll-wrapper">
-          {trendingMovies.map((movie, index) => (
+          {trendMovies.map((movie, index) => (
             <div key={index} className="horizontal-scroll-item">
               <ModernMovieCard
                 title={movie.title}
-                image={movie.image}
+                image={`${IMG_URL}${movie.poster_path}`}
                 platform={movie.platform}
               />
             </div>
