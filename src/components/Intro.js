@@ -18,7 +18,7 @@ const Intro = () => {
               two people meet in London and try to stop a conspiracy.
             </p>
             <div className="d-flex gap-3">
-              <Button className="btn-pill-red px-4 py-2">
+              <Button className="btn-pill-red px-4 py-2" href="#trending">
                 Explore Movies →
               </Button>
             </div>

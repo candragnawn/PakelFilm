@@ -4,6 +4,7 @@ import Intro from "./components/Intro";
 import Trending from "./components/Trending";
 import SuperHero from "./components/Superhero";
 import HeroSection from "./components/main";
+import Genre from "./components/Genre";
 
 import "./style/landingPage.css";
 
@@ -14,7 +15,11 @@ function App() {
         <NavigationBar />
         <Intro />
         <HeroSection />
-        <div className="superhero-overlay">
+
+        <div className="content-overlay">
+          <div className="Genre-container d-flex justify-content-center">
+            <Genre />
+          </div>
           <SuperHero />
           <Trending />
         </div>

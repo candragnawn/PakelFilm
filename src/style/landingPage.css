@@ -15,6 +15,13 @@ body {
   background-color: #000;
 }
 
+.Genre-container {
+  position: absolute;
+  z-index: 21;
+  width: 100%;
+  top: 0;
+  text-align: center;
+}
 .intro {
   position: relative;
   min-height: 90vh;
@@ -42,20 +49,19 @@ body {
   z-index: 1;
 }
 
-.superhero-overlay {
+.content-overlay {
   position: relative;
   z-index: 20;
   padding-bottom: 100px;
   background: transparent;
-  margin-top: -20vh; 
+  margin-top: -20vh;
 }
-
 
 .carousel-control-prev,
 .carousel-control-next {
-  z-index: 30 ;
+  z-index: 30;
   cursor: pointer;
-  position: fixed ;
+  position: fixed;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -67,12 +73,12 @@ body {
 }
 
 .search-input-modern {
-  background-color: #121212 !important;
+  background-color: #000000 !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 8px !important;
   color: white !important;
   padding: 8px 12px 8px 35px !important;
-  width: 300px !important;
+  width: 400px !important;
   font-size: 0.9rem !important;
 }
 
@@ -89,7 +95,11 @@ body {
 }
 
 .navbar-custom {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%) !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8) 0%,
+    transparent 100%
+  ) !important;
   padding: 15px 0 !important;
 }
 
@@ -113,7 +123,7 @@ body {
 
 .studio-logo {
   display: inline-block;
-  background-color: #970106;
+
   color: white;
   padding: 2px 8px;
   font-weight: 700;
