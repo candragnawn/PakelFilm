@@ -2,7 +2,6 @@ import "./App.css";
 
 import { BrowserRouter, Routes, Route, Link, Router } from "react-router-dom";
 import Home from "./pages/PageHome.jsx";
-
 import "./style/landingPage.css";
 import MovieDetails from "./pages/MovieDetails.jsx";
 

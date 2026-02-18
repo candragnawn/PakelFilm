@@ -6,16 +6,20 @@ import { useEffect } from "react";
 
 const Trending = () => {
   const [trendMovies, setMovies] = useState([]);
-  const IMG_URL = process.env.REACT_APP_BASEIMGURL;
+  const IMG_URL = (process.env.REACT_APP_BASEIMGURL || "https://image.tmdb.org/t/p/w1280").trim();
 
   useEffect(() => {
     const fetchTrending = async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_APIKEY}`,
-      );
-
-      const data = await response.json();
-      setMovies(data.results);
+      try {
+        const apiKey = (process.env.REACT_APP_APIKEY || "").trim();
+        const response = await fetch(
+          `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`,
+        );
+        const data = await response.json();
+        setMovies(data.results);
+      } catch (error) {
+        console.error("Error fetching trending movies:", error);
+      }
     };
     fetchTrending();
   }, []);
@@ -29,7 +33,7 @@ const Trending = () => {
             <div key={index} className="horizontal-scroll-item">
               <ModernMovieCard
                 title={movie.title}
-                image={`${IMG_URL}${movie.poster_path}`}
+                image={movie.poster_path ? `${IMG_URL}${movie.poster_path}` : "https://via.placeholder.com/500x750?text=No+Poster"}
                 platform={movie.platform}
               />
             </div>

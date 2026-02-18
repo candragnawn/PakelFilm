@@ -7,62 +7,68 @@ body {
 
 .hero-container {
   position: fixed !important;
-  object-fit: cover;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   z-index: 0;
-  background-color: #000;
+  background-color: transparent;
+  overflow: hidden;
 }
 
-.Genre-container {
-  position: absolute;
-  z-index: 21;
-  width: 100%;
-  top: 0;
-  text-align: center;
-  font-size: large;
-}
-
-.genre-text {
-  font-size:;
-  font-weight: 700;
-  color: #000;
-}
-.intro {
+.hero-backdrop-wrapper {
   position: relative;
-  min-height: 90vh;
+  height: 100vh;
+  width: 100%;
+}
+
+.hero-backdrop-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1;
+}
+
+.hero-overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: start;
-  width: 100%;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.intro .container {
-  pointer-events: auto;
+  z-index: 2;
+  color: white;
+  padding-bottom: 25vh; /* Lift text up */
 }
 
 .hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100vh;
   width: 100%;
   object-fit: cover;
-  filter: brightness(0.3);
+  display: block;
+  z-index: 0;
 }
 
 .hero-section {
   position: relative;
-  z-index: 1;
+  width: 100%;
 }
 
 .content-overlay {
   position: relative;
-  z-index: 20;
+  z-index: 10;
+  padding-top: 90vh; /* Pushes the cards down so they don't cover hero text */
   padding-bottom: 100px;
   background: transparent;
-  margin-top: -20vh;
+  width: 100%;
 }
 
 .carousel-control-prev,
@@ -131,7 +137,7 @@ body {
   font-size: 3.5rem;
   font-weight: 500;
   line-height: 1.1;
-  text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Added strong shadow for legibility */
   letter-spacing: -1px;
   margin-bottom: 0.5rem;
 }
@@ -158,7 +164,7 @@ body {
   color: #eee;
   line-height: 1.6;
   max-width: 500px;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Added shadow for legibility */
 }
 
 .btn-pill-red {
