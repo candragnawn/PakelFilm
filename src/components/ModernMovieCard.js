@@ -1,12 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const ModernMovieCard = ({ image, title, platform, isActive }) => {
+const ModernMovieCard = ({ image, title, platform, rating, isActive }) => {
   return (
-    <div className={`modern-card ${isActive ? 'active' : ''}`}>
+    <div className={`modern-card ${isActive ? "active" : ""}`}>
       {platform && <div className="platform-badge">{platform}</div>}
       <img src={image} alt={title} className="modern-card-image" />
-      <div className="modern-card-overlay">
+      <div className="modern-card-overlay ">
         <h3 className="modern-card-title">{title}</h3>
+        <h3 className="modern-card-title">{rating}</h3>
       </div>
     </div>
   );

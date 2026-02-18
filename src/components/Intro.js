@@ -1,6 +1,9 @@
 import { Col, Container, Row, Button } from "react-bootstrap";
 
 const Intro = () => {
+  
+  
+  
   return (
     <div className="intro align-items-center text-white">
       <Container>

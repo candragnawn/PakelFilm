@@ -7,6 +7,7 @@ body {
 
 .hero-container {
   position: fixed !important;
+  object-fit: cover;
   top: 0;
   left: 0;
   width: 100%;
@@ -214,6 +215,7 @@ body {
 }
 
 .modern-card-overlay {
+  display: flex;
   position: absolute;
   top: 0;
   left: 0;
