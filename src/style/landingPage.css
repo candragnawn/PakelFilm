@@ -6,30 +6,27 @@ body {
 }
 
 .hero-container {
-  position: fixed !important;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 100vh;
-  z-index: 0;
-  background-color: transparent;
+  height: 200vh;
+  background-color: #000;
   overflow: hidden;
 }
 
 .hero-backdrop-wrapper {
   position: relative;
-  height: 100vh;
+  height: 200vh;
   width: 100%;
 }
 
 .hero-backdrop-wrapper::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
+  background: linear-gradient(to top, #000 0%, transparent 5%);
   z-index: 1;
 }
 
@@ -38,36 +35,42 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
-  z-index: 2;
+  z-index: 10 !important;
   color: white;
-  padding-bottom: 25vh; /* Lift text up */
 }
 
 .hero-img {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 200vh;
   width: 100%;
   object-fit: cover;
   display: block;
   z-index: 0;
+  filter: brightness(0.5);
 }
 
 .hero-section {
   position: relative;
   width: 100%;
+  background-color: #000;
+}
+
+.main-layout {
+  background-color: #000;
+  min-height: 100vh;
 }
 
 .content-overlay {
   position: relative;
-  z-index: 10;
-  padding-top: 90vh; /* Pushes the cards down so they don't cover hero text */
+  z-index: 20;
   padding-bottom: 100px;
-  background: transparent;
+  background-color: transparent;
+  margin-top: -100vh;
   width: 100%;
 }
 
@@ -98,7 +101,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 8px !important;
   color: white !important;
-  padding: 8px 12px 8px 35px !important;
+  padding: 8px 12px 12px 35px !important;
   width: 400px !important;
   font-size: 0.9rem !important;
 }
@@ -137,7 +140,7 @@ body {
   font-size: 3.5rem;
   font-weight: 500;
   line-height: 1.1;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Added strong shadow for legibility */
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   letter-spacing: -1px;
   margin-bottom: 0.5rem;
 }
@@ -164,7 +167,7 @@ body {
   color: #eee;
   line-height: 1.6;
   max-width: 500px;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Added shadow for legibility */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 .btn-pill-red {
@@ -196,20 +199,17 @@ body {
   cursor: pointer;
   transition:
     transform 0.3s ease,
-    border 0.3s ease,
     box-shadow 0.3s ease;
-  border: 4px solid transparent;
-  background-color: #1a1a1a;
-  aspect-ratio: 3 / 4;
+  background-color: #000;
+  aspect-ratio: 3 /4;
 }
 
 .modern-card:hover,
 .modern-card.active {
   transform: scale(1.05);
-  border-color: #fff;
   box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.5),
-    0 0 15px rgba(255, 255, 255, 0.3);
+    0 0 0 4px #fff,
+    0 10px 20px rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
 
