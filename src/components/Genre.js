@@ -4,7 +4,7 @@ const Genre = () => {
   return (
     <div className="d-flex horizontal-scroll-wrapper">
       <Container>
-        <Nav className="me-auto te">
+        <Nav className="me-auto genre">
           <Nav.Link href="#home" className="genre-text">
             Home
           </Nav.Link>

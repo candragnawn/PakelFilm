@@ -30,6 +30,7 @@ const SuperHero = () => {
                 title={movie.title}
                 image={movie.image}
                 platform={movie.platform}
+                className=""
               />
             </div>
           ))}
