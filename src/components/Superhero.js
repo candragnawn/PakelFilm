@@ -6,6 +6,8 @@ import batmanImage from "../assets/images/superhero/batman.jpg";
 import robinhoodImage from "../assets/images/superhero/robinhood.jpg";
 import spidermanImage from "../assets/images/superhero/spiderman-cover.jpg";
 import supermanImage from "../assets/images/superhero/superman.jpg";
+import { ToggleButton } from "react-bootstrap";
+import { ToggleButtonGroup } from "react-bootstrap";
 
 const SuperHero = () => {
   const movies = [
@@ -19,10 +21,19 @@ const SuperHero = () => {
     { title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
   ];
 
+  // function ToggleButtonGroupControlled() {
+  //   const [value, setValue] = useState([]);
+  //   const handleChange = (val) => setValue(val);
+  // }
   return (
     <div id="superhero" className="py-5">
       <Container>
-        <h4 className="text-white">SUPERHERO MOVIES</h4>
+        <div className="d-flex gap-5">
+          {" "}
+          <h4 className="text-white">SUPERHERO MOVIES</h4>
+          <h4 className="text-white">SUPERHERO MOVIES</h4>
+        </div>
+
         <div className="horizontal-scroll-wrapper">
           {movies.map((movie, index) => (
             <div key={index} className="horizontal-scroll-item">

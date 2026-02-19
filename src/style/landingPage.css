@@ -51,7 +51,7 @@ body {
   object-fit: cover;
   display: block;
   z-index: 0;
-  filter: brightness(0.5);
+  filter: brightness(0.4);
 }
 
 .hero-section {
@@ -70,7 +70,7 @@ body {
   z-index: 20;
   padding-bottom: 100px;
   background-color: transparent;
-  margin-top: -100vh;
+  margin-top: -120vh;
   width: 100%;
 }
 
@@ -97,10 +97,10 @@ body {
 }
 
 .search-input-modern {
-  background-color: #000000 !important;
+  background-color: #221d1d !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 8px !important;
-  color: white !important;
+  color: rgb(255, 255, 255) !important;
   padding: 8px 12px 12px 35px !important;
   width: 400px !important;
   font-size: 0.9rem !important;
@@ -171,17 +171,17 @@ body {
 }
 
 .btn-pill-red {
-  background-color: #ad0006 !important;
+  background-color: #6d1518 !important;
   border: none !important;
-  border-radius: 50px !important;
-  font-weight: bold !important;
-  padding: 10px 30px !important;
+  border-radius: 20px !important;
+  font-weight: medium !important;
+
   transition: transform 0.2s ease !important;
 }
 
 .btn-pill-red:hover {
   transform: scale(1.05);
-  background-color: #ff2a31 !important;
+  background-color: #991519 !important;
 }
 
 .caption {
@@ -201,7 +201,7 @@ body {
     transform 0.3s ease,
     box-shadow 0.3s ease;
   background-color: #000;
-  aspect-ratio: 3 /4;
+  /* aspect-ratio: 9/16; */
 }
 
 .modern-card:hover,
