@@ -48,7 +48,7 @@ const Trending = () => {
                     ? `${IMG_URL}${movie.poster_path}`
                     : "https://via.placeholder.com/500x750?text=No+Poster"
                 }
-                platform={movie.platform}
+                platform={movie.vote_average?.toFixed(1)}
               />
             </div>
           ))}
