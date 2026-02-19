@@ -7,32 +7,36 @@ import { useEffect } from "react";
 
 const Trending = () => {
   const [trendMovies, setMovies] = useState([]);
-  const [timeWindow, setTimeWindow] = useState("");
+  const [timeWindow, setTimeWindow] = useState("day");
+  const [loading, setLoading] = useState(false);
   const IMG_URL = (
     process.env.REACT_APP_BASEIMGURL || "https://image.tmdb.org/t/p/w1280"
   ).trim();
 
   useEffect(() => {
     const fetchTrending = async () => {
+      setLoading(true);
       try {
         const apiKey = (process.env.REACT_APP_APIKEY || "").trim();
         const response = await fetch(
-          `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`,
+          `https://api.themoviedb.org/3/trending/movie/${timeWindow}?api_key=${apiKey}`,
           // `https://api.themoviedb.org/3/watch/providers/movie/?api_key=${apiKey}`,
         );
         const data = await response.json();
         setMovies(data.results);
       } catch (error) {
         console.error("Error fetching trending movies:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchTrending();
-  }, []);
+  }, [timeWindow]);
 
   return (
     <div id="trending" className="py-5">
       <Container>
-        <div className="d-flex gap-2">
+        <div className="d-flex gap-3">
           {" "}
           <h4 className="text-white">TRENDING</h4>
           <TimeFilter current={timeWindow} onChange={setTimeWindow} />

@@ -8,6 +8,8 @@ import spidermanImage from "../assets/images/superhero/spiderman-cover.jpg";
 import supermanImage from "../assets/images/superhero/superman.jpg";
 import { ToggleButton } from "react-bootstrap";
 import { ToggleButtonGroup } from "react-bootstrap";
+import { useState } from "react";
+import TimeFilter from "./TimeFilter";
 
 const SuperHero = () => {
   const movies = [
@@ -25,13 +27,15 @@ const SuperHero = () => {
   //   const [value, setValue] = useState([]);
   //   const handleChange = (val) => setValue(val);
   // }
+  // const [timeWindow, setTimeWindow] = useState("day");
+
   return (
     <div id="superhero" className="py-5">
       <Container>
         <div className="d-flex gap-5">
           {" "}
           <h4 className="text-white">SUPERHERO MOVIES</h4>
-          <h4 className="text-white">SUPERHERO MOVIES</h4>
+          {/* <TimeFilter current={timeWindow} onChange={setTimeWindow} /> */}
         </div>
 
         <div className="horizontal-scroll-wrapper">
