@@ -53,6 +53,25 @@ body {
   z-index: 0;
   filter: brightness(0.4);
 }
+.custom-toggle-group {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.custom-toggle-group .filter-btn {
+  border-radius: 50px !important;
+  border: none !important;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.custom-toggle-group .btn-check:checked + .filter-btn {
+  background-color: white !important;
+  color: black !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
 
 .hero-section {
   position: relative;
@@ -88,8 +107,6 @@ body {
   font-weight: 400;
 }
 
-.genre {
-}
 .search-wrapper {
   position: relative;
   display: flex;
@@ -97,9 +114,9 @@ body {
 }
 
 .search-input-modern {
-  background-color: #221d1d !important;
+  background-color: #000000 !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 8px !important;
+  border-radius: 20px !important;
   color: rgb(255, 255, 255) !important;
   padding: 8px 12px 12px 35px !important;
   width: 400px !important;
@@ -201,14 +218,14 @@ body {
     transform 0.3s ease,
     box-shadow 0.3s ease;
   background-color: #000;
-  /* aspect-ratio: 9/16; */
+  aspect-ratio: 2/3;
 }
 
 .modern-card:hover,
 .modern-card.active {
   transform: scale(1.05);
   box-shadow:
-    0 0 0 4px #fff,
+    0 0 0 2px #fff,
     0 10px 20px rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
@@ -262,6 +279,7 @@ body {
 }
 
 .horizontal-scroll-wrapper {
+  gap: 15px;
   display: flex;
   overflow-x: auto;
   gap: 25px;
@@ -274,12 +292,14 @@ body {
 }
 
 .horizontal-scroll-item {
-  flex: 0 0 calc(25% - 15px);
-  min-width: 280px;
+  flex: 0 0 calc(18% - 15px);
+  min-width: 180px;
+  /* untuk card */
 }
 
 #superhero .container,
-#trending .container {
+#trending .container,
+#popular .container {
   max-width: 90% !important;
   width: 90% !important;
   margin-left: auto !important;

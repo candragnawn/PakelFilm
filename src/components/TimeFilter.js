@@ -10,11 +10,23 @@ const TimeFilter = ({ current, onChange }) => {
       onChange={onChange}
       className="custoom-toggle-group"
     >
-      <ToggleButton id="tbg-day" value="day" variant="outline-light" size="sm" className="px-3">
-        Today
+      <ToggleButton
+        id="tbg-day"
+        value="day"
+        variant="outline-light"
+        size="sm"
+        className="px-3 filter-btn"
+      >
+        TODAY
       </ToggleButton>
-      <ToggleButton id="tbg-week" value="week" variant="outline-light" size="sm" className="px-3">
-        This Week
+      <ToggleButton
+        id="tbg-week"
+        value="week"
+        variant="outline-light"
+        size="sm"
+        className="px-3 filter-btn"
+      >
+        THIS WEEK
       </ToggleButton>
     </ToggleButtonGroup>
   );

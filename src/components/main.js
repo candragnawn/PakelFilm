@@ -17,10 +17,10 @@ const HeroSection = () => {
       try {
         const apiKey = (process.env.REACT_APP_APIKEY || "").trim();
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`,
+          `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`,
         );
         const data = await response.json();
-        setMovies(data.results.slice(0, 10));
+        setMovies(data.results ? data.results.slice(0, 10) : []);
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
@@ -49,7 +49,7 @@ const HeroSection = () => {
                 <Container>
                   <Row className="align-items-center h-100">
                     <Col md={10} lg={7}>
-                      <div className="studio-logo mb-3">Featured Movie</div>
+                      <div className="studio-logo mb-3">UPCOMING</div>
                       <h1 className="title-premium mb-3">{movie.title}</h1>
                       <div className="meta-info d-flex gap-3 mb-4">
                         <span className="rating">

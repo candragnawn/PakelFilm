@@ -5,7 +5,7 @@ import TimeFilter from "./TimeFilter";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const Trending = () => {
+const Popular = () => {
   const [trendMovies, setMovies] = useState([]);
   const [timeWindow, setTimeWindow] = useState("day");
   const [loading, setLoading] = useState(false);
@@ -19,27 +19,25 @@ const Trending = () => {
       try {
         const apiKey = (process.env.REACT_APP_APIKEY || "").trim();
         const response = await fetch(
-          `https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${apiKey}`,
-          // `https://api.themoviedb.org/3/watch/providers/movie/?api_key=${apiKey}`,
+          `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`,
         );
         const data = await response.json();
         setMovies(data.results || []);
       } catch (error) {
-        console.error("Error fetching trending movies:", error);
+        console.error("Error fetching popular movies:", error);
       } finally {
         setLoading(false);
       }
     };
     fetchTrending();
-  }, [timeWindow]);
+  }, []);
 
   return (
-    <div id="trending" className="py-5">
+    <div id="popular" className="py-5">
       <Container>
         <div className="d-flex gap-3">
           {" "}
-          <h4 className="text-white">TRENDING</h4>
-          <TimeFilter current={timeWindow} onChange={setTimeWindow} />
+          <h4 className="text-white">POPULAR MOVIES</h4>
         </div>
 
         <div className="horizontal-scroll-wrapper">
@@ -62,4 +60,4 @@ const Trending = () => {
   );
 };
 
-export default Trending;
+export default Popular;

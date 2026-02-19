@@ -7,6 +7,7 @@ import HeroSection from "../components/main";
 import Genre from "../components/Genre";
 
 import "../style/landingPage.css";
+import Popular from "../components/PopularCard";
 
 const Home = () => {
   return (
@@ -20,8 +21,9 @@ const Home = () => {
             <div className="Genre-container d-flex justify-content-center">
               <Genre />
             </div>
-            <SuperHero />
+            {/* <SuperHero /> */}
             <Trending />
+            <Popular />
           </div>
         </div>
       </div>
