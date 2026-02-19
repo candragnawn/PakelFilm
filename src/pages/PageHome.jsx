@@ -8,6 +8,8 @@ import Genre from "../components/Genre";
 
 import "../style/landingPage.css";
 import Popular from "../components/PopularCard";
+import TopRated from "../components/TopRated";
+import Nowplaying from "../components/NowPlaying";
 
 const Home = () => {
   return (
@@ -24,6 +26,8 @@ const Home = () => {
             {/* <SuperHero /> */}
             <Trending />
             <Popular />
+            <TopRated />
+            <Nowplaying />
           </div>
         </div>
       </div>

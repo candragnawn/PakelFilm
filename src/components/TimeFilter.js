@@ -8,7 +8,7 @@ const TimeFilter = ({ current, onChange }) => {
       name="time-option"
       value={current}
       onChange={onChange}
-      className="custoom-toggle-group"
+      className="custom-toggle-group"
     >
       <ToggleButton
         id="tbg-day"

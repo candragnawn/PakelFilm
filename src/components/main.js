@@ -20,7 +20,7 @@ const HeroSection = () => {
           `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`,
         );
         const data = await response.json();
-        setMovies(data.results ? data.results.slice(0, 10) : []);
+        setMovies(data.results ? data.results.slice(0, 15) : []);
       } catch (error) {
         console.error("Error fetching movies:", error);
       }

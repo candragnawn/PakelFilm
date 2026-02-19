@@ -299,7 +299,8 @@ body {
 
 #superhero .container,
 #trending .container,
-#popular .container {
+#popular .container,
+#topRated .container, #nowplaying .container {
   max-width: 90% !important;
   width: 90% !important;
   margin-left: auto !important;

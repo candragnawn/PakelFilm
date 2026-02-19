@@ -1,48 +1,44 @@
+import React from "react";
+import TimeFilter from "./TimeFilter";
 import { Container } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
-import TimeFilter from "./TimeFilter";
 
 import { useState } from "react";
 import { useEffect } from "react";
 
-const Popular = () => {
-  const [trendMovies, setMovies] = useState([]);
-  const [timeWindow, setTimeWindow] = useState("day");
-  const [loading, setLoading] = useState(false);
+const TopRated = () => {
+  const [topRated, setTopRated] = useState([]);
   const IMG_URL = (
     process.env.REACT_APP_BASEIMGURL || "https://image.tmdb.org/t/p/w1280"
   ).trim();
 
   useEffect(() => {
-    const fetchTrending = async () => {
-      setLoading(true);
+    const fetchTopRated = async () => {
       try {
         const apiKey = (process.env.REACT_APP_APIKEY || "").trim();
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`,
+          `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`,
         );
         const data = await response.json();
-        setMovies(data.results || []);
+        setTopRated(data.results || []);
       } catch (error) {
         console.error("Error fetching popular movies:", error);
-      } finally {
-        setLoading(false);
       }
     };
-    fetchTrending();
+    fetchTopRated();
   }, []);
-
   return (
-    <div id="popular" className="py-5">
+    <div id="topRated" className="py-5">
+      {" "}
       <Container>
         <div className="d-flex gap-3">
           {" "}
-          <h4 className="text-white">POPULAR MOVIES</h4>
+          <h4 className="text-white">TOP RATED MOVIES</h4>
         </div>
 
         <div className="horizontal-scroll-wrapper">
-          {trendMovies &&
-            trendMovies.map((movie, index) => (
+          {topRated &&
+            topRated.map((movie, index) => (
               <div key={index} className="horizontal-scroll-item">
                 <ModernMovieCard
                   title={movie.title}
@@ -61,4 +57,4 @@ const Popular = () => {
   );
 };
 
-export default Popular;
+export default TopRated;
