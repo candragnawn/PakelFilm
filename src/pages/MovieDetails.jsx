@@ -10,7 +10,7 @@ const MovieDetailsPage = () => {
   return (
     <div className="bg-dark min-vh-100">
       <NavigationBar />
-      <div style={{ paddingTop: "70px" }}>
+      <div>
         <MovieDetailComponent movieId={id} />
       </div>
     </div>
