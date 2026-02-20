@@ -52,6 +52,7 @@ const Popular = () => {
                       : "https://via.placeholder.com/500x750?text=No+Poster"
                   }
                   platform={movie.vote_average?.toFixed(1)}
+                   date={movie.release_date}
                 />
               </div>
             ))}

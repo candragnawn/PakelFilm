@@ -14,7 +14,7 @@ const NowPlaying = () => {
       try {
         const apiKey = (process.env.REACT_APP_APIKEY || "").trim();
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`
+          `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`,
         );
         const data = await response.json();
         setMovies(data.results || []);
@@ -43,6 +43,7 @@ const NowPlaying = () => {
                       : "https://via.placeholder.com/500x750?text=No+Poster"
                   }
                   platform={movie.vote_average?.toFixed(1)}
+                  date={movie.release_date}
                 />
               </div>
             ))}
