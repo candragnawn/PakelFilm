@@ -29,7 +29,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="hero-container">
+    <div className="hero-container" id="Hero">
       <Carousel fade indicators={false} controls={true} className="w-100">
         {movies.map((movie, index) => (
           <Carousel.Item key={index}>

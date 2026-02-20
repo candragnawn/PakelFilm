@@ -1,5 +1,5 @@
 import React from "react";
-import TimeFilter from "./TimeFilter";
+
 import { Container } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
 
@@ -41,14 +41,15 @@ const TopRated = () => {
             topRated.map((movie, index) => (
               <div key={index} className="horizontal-scroll-item">
                 <ModernMovieCard
-                  title={movie.title}
+                  id={movie.id}
+                  title={movie.title || movie.name}
                   image={
                     movie.poster_path
                       ? `${IMG_URL}${movie.poster_path}`
                       : "https://via.placeholder.com/500x750?text=No+Poster"
                   }
                   platform={movie.vote_average?.toFixed(1)}
-                  date={movie.release_date}
+                  date={movie.release_date || movie.first_air_date}
                 />
               </div>
             ))}

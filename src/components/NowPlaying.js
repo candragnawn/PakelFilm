@@ -36,6 +36,7 @@ const NowPlaying = () => {
             movies.map((movie, index) => (
               <div key={index} className="horizontal-scroll-item">
                 <ModernMovieCard
+                  id={movie.id}
                   title={movie.title}
                   image={
                     movie.poster_path

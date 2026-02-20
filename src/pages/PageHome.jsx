@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 import NavigationBar from "../components/NavigationBar";
+import { useSearchParams } from "react-router-dom";
 import Trending from "../components/Trending";
 import SuperHero from "../components/Superhero";
 import HeroSection from "../components/main";
@@ -12,6 +13,8 @@ import TopRated from "../components/TopRated";
 import Nowplaying from "../components/NowPlaying";
 
 const Home = () => {
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("q")
   return (
     <div>
       <div className="main-layout">

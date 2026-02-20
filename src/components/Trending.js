@@ -43,19 +43,22 @@ const Trending = () => {
         </div>
 
         <div className="horizontal-scroll-wrapper">
-          {trendMovies && trendMovies.map((movie, index) => (
-            <div key={index} className="horizontal-scroll-item">
-              <ModernMovieCard
-                title={movie.title}
-                image={
-                  movie.poster_path
-                    ? `${IMG_URL}${movie.poster_path}`
-                    : "https://via.placeholder.com/500x750?text=No+Poster"
-                }
-                platform={movie.vote_average?.toFixed(1)}
-              />
-            </div>
-          ))}
+          {trendMovies &&
+            trendMovies.map((movie, index) => (
+              <div key={index} className="horizontal-scroll-item">
+                <ModernMovieCard
+                  id={movie.id}
+                  title={movie.title}
+                  image={
+                    movie.poster_path
+                      ? `${IMG_URL}${movie.poster_path}`
+                      : "https://via.placeholder.com/500x750?text=No+Poster"
+                  }
+                  platform={movie.vote_average?.toFixed(1)}
+                  date={movie.release_date}
+                />
+              </div>
+            ))}
         </div>
       </Container>
     </div>

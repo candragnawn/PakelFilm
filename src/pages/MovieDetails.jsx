@@ -1,32 +1,20 @@
 import React from "react";
-import "../App.css";
+import { useParams } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
-import Trending from "../components/Trending";
-import SuperHero from "../components/Superhero";
-import HeroSection from "../components/main";
-import Genre from "../components/Genre";
-
+import MovieDetailComponent from "../components/MovieDetails";
 import "../style/landingPage.css";
 
-const Home = () => {
-  return (
-    <div>
-      <div className="bg-dark">
-        <div className="hero-section">
-          <NavigationBar />
-          <HeroSection />
+const MovieDetailsPage = () => {
+  const { id } = useParams();
 
-          <div className="content-overlay">
-            <div className="Genre-container d-flex justify-content-center">
-              <Genre />
-            </div>
-            <SuperHero />
-            <Trending />
-          </div>
-        </div>
+  return (
+    <div className="bg-dark min-vh-100">
+      <NavigationBar />
+      <div style={{ paddingTop: "70px" }}>
+        <MovieDetailComponent movieId={id} />
       </div>
     </div>
   );
 };
 
-export default Home;
+export default MovieDetailsPage;

@@ -13,14 +13,14 @@ import TimeFilter from "./TimeFilter";
 
 const SuperHero = () => {
   const movies = [
-    { title: "ANT MAN", image: antmanImage, platform: "NETFLIX" },
-    { title: "AVENGER", image: avengerImage, platform: "HBOMax" },
-    { title: "THE BATMAN", image: batmanImage, platform: "Sky Cinema" },
-    { title: "ROBIN HOOD", image: robinhoodImage, platform: "Disney+" },
-    { title: "SPIDERMAN", image: spidermanImage, platform: "NETFLIX" },
-    { title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
-    { title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
-    { title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
+    { id: 1, title: "ANT MAN", image: antmanImage, platform: "NETFLIX" },
+    { id: 2, title: "AVENGER", image: avengerImage, platform: "HBOMax" },
+    { id: 3, title: "THE BATMAN", image: batmanImage, platform: "Sky Cinema" },
+    { id: 4, title: "ROBIN HOOD", image: robinhoodImage, platform: "Disney+" },
+    { id: 5, title: "SPIDERMAN", image: spidermanImage, platform: "NETFLIX" },
+    { id: 6, title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
+    { id: 7, title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
+    { id: 8, title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
   ];
 
   // function ToggleButtonGroupControlled() {
@@ -42,6 +42,7 @@ const SuperHero = () => {
           {movies.map((movie, index) => (
             <div key={index} className="horizontal-scroll-item">
               <ModernMovieCard
+                id={movie.id}
                 title={movie.title}
                 image={movie.image}
                 platform={movie.platform}
