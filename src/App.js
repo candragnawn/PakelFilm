@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/PageHome.jsx";
 import MovieDetails from "./pages/MovieDetails.jsx";
-// import Movie from "./pages/Movie.jsx";
-// import TV from "./pages/TV.jsx";
+import ListPage from "./pages/ListPage.jsx";
+
 import "./App.css";
 import "./style/landingPage.css";
 
@@ -12,8 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
-        <Route path="/discover/:type/:genreId" element={<MovieDetails />} />
-      </Routes> 
+        {/* <Route path="/discover/:type/:genreId" element={<ListPage />} /> */}
+      </Routes>
     </BrowserRouter>
   );
 }

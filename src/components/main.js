@@ -64,7 +64,7 @@ const HeroSection = () => {
                       </p>
                       <div className="d-flex gap-3">
                         <Button
-                          className="btn-pill-red px-5 py-3"
+                          className="btn-pill-red px-4 py-3"
                           href="#trending"
                         >
                           Explore Movies →
