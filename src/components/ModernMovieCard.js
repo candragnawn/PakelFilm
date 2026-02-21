@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
-const ModernMovieCard = ({
+const ModernMovieCard = memo(({
   id,
   image,
   title,
@@ -14,7 +14,7 @@ const ModernMovieCard = ({
     <Link to={`/movie/${id}`} style={{ textDecoration: "none" }}>
       <div className={`modern-card ${isActive ? "active" : ""}`}>
         {platform && <div className="platform-badge">{platform}</div>}
-        <img src={image} alt={title} className="modern-card-image" />
+        <img src={image} alt={title} className="modern-card-image" loading="lazy" />
         <div className="modern-card-overlay ">
           <h3 className="modern-card-title">{title}</h3>
           <h3 className="modern-card-title">{rating}</h3>
@@ -23,6 +23,6 @@ const ModernMovieCard = ({
       </div>
     </Link>
   );
-};
+});
 
 export default ModernMovieCard;

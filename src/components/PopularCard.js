@@ -1,21 +1,16 @@
 import { Container } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
-import TimeFilter from "./TimeFilter";
-
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import Button from 'react-bootstrap/Button';
 
 const Popular = () => {
   const [trendMovies, setMovies] = useState([]);
-  const [timeWindow, setTimeWindow] = useState("day");
-  const [loading, setLoading] = useState(false);
   const IMG_URL = (
     process.env.REACT_APP_BASEIMGURL || "https://image.tmdb.org/t/p/w1280"
   ).trim();
 
   useEffect(() => {
     const fetchTrending = async () => {
-      setLoading(true);
       try {
         const apiKey = (process.env.REACT_APP_APIKEY || "").trim();
         const response = await fetch(
@@ -25,8 +20,6 @@ const Popular = () => {
         setMovies(data.results || []);
       } catch (error) {
         console.error("Error fetching popular movies:", error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchTrending();
@@ -35,9 +28,15 @@ const Popular = () => {
   return (
     <div id="popular" className="py-5">
       <Container>
-        <div className="d-flex gap-3">
-          {" "}
+        <div className="d-flex gap-3 justify-content-between">
           <h4 className="text-white">POPULAR MOVIES</h4>
+          <Button
+            variant="outline-light"
+            className="px-3 filter-btn"
+            onClick={() => console.log("Primary")}
+          >
+            LIHAT SEMUA
+          </Button>
         </div>
 
         <div className="horizontal-scroll-wrapper">
@@ -53,7 +52,7 @@ const Popular = () => {
                       : "https://via.placeholder.com/500x750?text=No+Poster"
                   }
                   platform={movie.vote_average?.toFixed(1)}
-                   date={movie.release_date}
+                  date={movie.release_date}
                 />
               </div>
             ))}

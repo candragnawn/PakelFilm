@@ -1,10 +1,5 @@
 import { Carousel, Container, Row, Col, Button } from "react-bootstrap";
-import mainImage from "../assets/images/bg/21.jpg";
-import romanceImage from "../assets/images/bg/romance.jpg";
-import spidermanImage from "../assets/images/bg/spiderman (2).jpg";
-
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const HeroSection = () => {
   const [movies, setMovies] = useState([]);

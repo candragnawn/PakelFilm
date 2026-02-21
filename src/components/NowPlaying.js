@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
-import { useState } from "react";
-import { useEffect } from "react";
+import Button from "react-bootstrap/Button";
 
 const NowPlaying = () => {
   const [movies, setMovies] = useState([]);
@@ -24,11 +23,19 @@ const NowPlaying = () => {
     };
     fetchNowplaying();
   }, []);
+
   return (
     <div id="nowplaying" className="py-5">
       <Container>
-        <div className="d-flex gap-3">
+        <div className="d-flex gap-3 justify-content-between">
           <h4 className="text-white">NOW PLAYING</h4>
+          <Button
+            variant="outline-light"
+            className="px-3 filter-btn"
+            onClick={() => console.log("Primary")}
+          >
+            LIHAT SEMUA
+          </Button>
         </div>
 
         <div className="horizontal-scroll-wrapper">

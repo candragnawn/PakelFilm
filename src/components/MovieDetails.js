@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
 import { Link } from "react-router-dom";
+import { movieCache } from "../utils/movieCache";
 
 const MovieDetails = ({ movieId }) => {
   const [movie, setMovie] = useState(null);
@@ -15,6 +16,16 @@ const MovieDetails = ({ movieId }) => {
 
   useEffect(() => {
     const fetchMovieData = async () => {
+      const cacheKey = `movie_${movieId}`;
+      const cached = movieCache.get(cacheKey);
+
+      if (cached) {
+        setMovie(cached.movie);
+        setRecommendations(cached.recommendations);
+        setLoading(false);
+        return;
+      }
+
       setLoading(true);
       try {
         const detailRes = await fetch(
@@ -27,7 +38,18 @@ const MovieDetails = ({ movieId }) => {
           `${BASE_URL}/movie/${movieId}/recommendations?api_key=${API_KEY}`,
         );
         const recData = await recRes.json();
-        setRecommendations(recData.results || []);
+        
+        let finalRecs = recData.results || [];
+        if (finalRecs.length === 0) {
+          const similarRes = await fetch(
+            `${BASE_URL}/movie/${movieId}/similar?api_key=${API_KEY}`,
+          );
+          const similarData = await similarRes.json();
+          finalRecs = similarData.results || [];
+        }
+        
+        setRecommendations(finalRecs);
+        movieCache.set(cacheKey, { movie: detailData, recommendations: finalRecs });
       } catch (error) {
         console.error("Error fetching movie details:", error);
       } finally {
@@ -44,7 +66,7 @@ const MovieDetails = ({ movieId }) => {
     return (
       <div
         className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "50vh" }}
+        style={{ minHeight: "100vh" }}
       >
         <Spinner animation="border" variant="danger" />
       </div>
@@ -113,7 +135,6 @@ const MovieDetails = ({ movieId }) => {
           </Col>
         </Row>
 
-        {/* Recommendations Section */}
         {recommendations.length > 0 && (
           <div className="mt-5">
             <h4 className="text-white mb-4">RECOMMENDATIONS</h4>
@@ -125,6 +146,7 @@ const MovieDetails = ({ movieId }) => {
                     style={{ textDecoration: "none" }}
                   >
                     <ModernMovieCard
+                      id={rec.id}
                       title={rec.title}
                       image={`${IMG_URL_POSTER}${rec.poster_path}`}
                       platform={rec.vote_average?.toFixed(1)}

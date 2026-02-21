@@ -1,91 +1,78 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
 
 const SearchResults = ({ query }) => {
-  const [mainMovie, setMainMovie] = useState(null); // Untuk data highlight paling atas
-  const [recommendations, setRecommendations] = useState([]); // Untuk slider bawah
+  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const IMG_URL = process.env.REACT_APP_BASEIMGURL || "https://image.tmdb.org/t/p/w1280";
-  const BACKDROP_URL = "https://image.tmdb.org/t/p/original";
-  const API_KEY = process.env.REACT_APP_APIKEY;
+  const API_KEY = (process.env.REACT_APP_APIKEY || "").trim();
+  const BASE_URL = "https://api.themoviedb.org/3";
+  const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
   useEffect(() => {
-    const fetchSearchAndRecs = async () => {
+    const fetchSearchResults = async () => {
       setLoading(true);
       try {
-       
-        const searchRes = await fetch(
-          `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${query}`
+        const response = await fetch(
+          `${BASE_URL}/search/multi?api_key=${API_KEY}&query=${encodeURIComponent(query)}`
         );
-        const searchData = await searchRes.json();
-        const topResult = searchData.results[0]; // Ambil hasil paling relevan (paling atas)
-        setMainMovie(topResult);
-
-       
-        if (topResult) {
-          const recRes = await fetch(
-            `https://api.themoviedb.org/3/${topResult.media_type || 'movie'}/${topResult.id}/recommendations?api_key=${API_KEY}`
-          );
-          const recData = await recRes.json();
-          setRecommendations(recData.results || []);
-        }
+        const data = await response.json();
+        
+        const filteredResults = (data.results || []).filter(
+          item => item.media_type === "movie" || item.media_type === "tv" || !item.media_type
+        );
+        setResults(filteredResults);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching search results:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    if (query) fetchSearchAndRecs();
+    if (query) {
+      fetchSearchResults();
+    }
   }, [query, API_KEY]);
 
-  if (loading || !mainMovie) return <div className="text-white p-5">Loading...</div>;
+  if (loading) {
+    return (
+      <Container className="py-5 text-center">
+        <Spinner animation="border" variant="danger" />
+      </Container>
+    );
+  }
 
   return (
-    <div className="search-detail-wrapper">
-      {/* --- SECTION 1: BACKDROP & DETAIL --- */}
-      <div 
-        className="search-hero" 
-        style={{ backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.4)), url(${BACKDROP_URL}${mainMovie.backdrop_path})` }}
-      >
-        <Container className="py-5">
-          <Row className="align-items-center">
-            <Col md={4} className="text-center">
-              <img 
-                src={`${IMG_URL}${mainMovie.poster_path}`} 
-                alt={mainMovie.title} 
-                className="img-fluid rounded shadow-lg poster-highlight"
-              />
-            </Col>
-            <Col md={8} className="text-white mt-4 mt-md-0">
-              <h1 className="display-4 fw-bold">{mainMovie.title || mainMovie.name}</h1>
-              <p className="text-warning fw-bold fs-5">⭐ {mainMovie.vote_average?.toFixed(1)} | {mainMovie.release_date || mainMovie.first_air_date}</p>
-              <h5 className="mt-4">Overview</h5>
-              <p className="lead" style={{ fontSize: '1rem', opacity: 0.8 }}>{mainMovie.overview}</p>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-
-      {/* --- SECTION 2: RECOMMENDATIONS (Slider Style) --- */}
-      <Container className="py-5">
-        <h4 className="text-white mb-4">RECOMMENDATIONS FOR YOU</h4>
-        <div className="horizontal-scroll-wrapper">
-          {recommendations.map((movie, index) => (
-            <div key={index} className="horizontal-scroll-item">
+    <Container className="py-6" style={{ paddingTop: "150px" }}>
+      <h4 className="text-white mb-4 text-uppercase letter-spacing-2">
+        Search Results for: <span className="text-danger">"{query}"</span>
+      </h4>
+      
+      {results.length > 0 ? (
+        <Row className="g-4">
+          {results.map((item) => (
+            <Col key={item.id} xs={6} md={4} lg={3} xl={2}>
               <ModernMovieCard
-                title={movie.title || movie.name}
-                image={movie.poster_path ? `${IMG_URL}${movie.poster_path}` : "https://via.placeholder.com/500x750"}
-                platform={movie.vote_average?.toFixed(1)}
-                date={movie.release_date || movie.first_air_date}
+                id={item.id}
+                title={item.title || item.name}
+                image={
+                  item.poster_path 
+                    ? `${IMG_URL}${item.poster_path}` 
+                    : "https://via.placeholder.com/500x750?text=No+Poster"
+                }
+                platform={item.vote_average?.toFixed(1)}
+                date={(item.release_date || item.first_air_date)?.substring(0, 4)}
               />
-            </div>
+            </Col>
           ))}
+        </Row>
+      ) : (
+        <div className="text-white text-center py-5">
+          <p className="lead">No results found for "{query}".</p>
         </div>
-      </Container>
-    </div>
+      )}
+    </Container>
   );
 };
 

@@ -1,9 +1,9 @@
 import { Container } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
 import TimeFilter from "./TimeFilter";
+import Button from "react-bootstrap/Button";
 
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const Trending = () => {
   const [trendMovies, setMovies] = useState([]);
@@ -20,7 +20,6 @@ const Trending = () => {
         const apiKey = (process.env.REACT_APP_APIKEY || "").trim();
         const response = await fetch(
           `https://api.themoviedb.org/3/trending/all/${timeWindow}?api_key=${apiKey}`,
-          // `https://api.themoviedb.org/3/watch/providers/movie/?api_key=${apiKey}`,
         );
         const data = await response.json();
         setMovies(data.results || []);
@@ -36,9 +35,17 @@ const Trending = () => {
   return (
     <div id="trending" className="py-5">
       <Container>
-        <div className="d-flex gap-3">
-          {" "}
-          <h4 className="text-white">TRENDING</h4>
+        <div className="d-flex justify-content-between align-items-center mb-4gap-3">
+          <h4 className="text-white justify-content-start">TRENDING</h4>
+          <Button
+            variant="outline-light"
+            className="px-3 filter-btn"
+            onClick={() => console.log("Primary")}
+          >
+            LIHAT SEMUA
+          </Button>
+        </div>
+        <div className="d-flex">
           <TimeFilter current={timeWindow} onChange={setTimeWindow} />
         </div>
 

@@ -1,10 +1,8 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
+import Button from 'react-bootstrap/Button';
 
-import { useState } from "react";
-import { useEffect } from "react";
 
 const TopRated = () => {
   const [topRated, setTopRated] = useState([]);
@@ -22,18 +20,24 @@ const TopRated = () => {
         const data = await response.json();
         setTopRated(data.results || []);
       } catch (error) {
-        console.error("Error fetching popular movies:", error);
+        console.error("Error fetching top rated movies:", error);
       }
     };
     fetchTopRated();
   }, []);
+
   return (
     <div id="topRated" className="py-5">
-      {" "}
       <Container>
-        <div className="d-flex gap-3">
-          {" "}
+        <div className="d-flex justify-content-between gap-3">
           <h4 className="text-white">TOP RATED MOVIES</h4>
+           <Button
+            variant="outline-light"
+            className="px-3 filter-btn"
+            onClick={() => console.log("Primary")}
+          >
+            LIHAT SEMUA
+          </Button>
         </div>
 
         <div className="horizontal-scroll-wrapper">

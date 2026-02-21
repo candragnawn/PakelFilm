@@ -1,27 +1,30 @@
 import { Navbar, Container, Nav, Form } from "react-bootstrap";
-
 import { useState } from "react";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const NavigationBar = () => {
   const [query, setQuery] = useState("");
-  const [search, searchResults] = useState([]);
-  const IMG_URL = process.env.REACT_APP_BASEIMGURL;
   const navigate = useNavigate();
 
-  const handleSearch = async (e) => {
+  const handleSearch = (e) => {
     const value = e.target.value;
     setQuery(value);
-    if (value.length > 2) {
-      navigate(`/?q=${value}`);
-    } else {
-      navigate(`/`);
+
+    if (window.searchTimeout) {
+      clearTimeout(window.searchTimeout);
     }
+
+    window.searchTimeout = setTimeout(() => {
+      if (value.length > 2) {
+        navigate(`/?q=${encodeURIComponent(value)}`);
+      } else {
+        navigate(`/`);
+      }
+    }, 500);
   };
 
   return (
-    <Navbar variant="dark" fixed="top" className="navbar-custom">
+    <Navbar variant="dark" fixed="top" className="navbar-custom" bg="transparent">
       <Container>
         <Navbar.Brand href="/" className="fw-medium">
           PAKELFILMS

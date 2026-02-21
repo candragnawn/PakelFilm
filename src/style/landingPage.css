@@ -1,8 +1,9 @@
+html,
 body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  background-color: #000;
+  background-color: #000 !important;
 }
 
 .hero-container {
@@ -76,7 +77,8 @@ body {
 .hero-section {
   position: relative;
   width: 100%;
-  background-color: #000;
+  background-color: #000 !important;
+  min-height: 100vh;
 }
 
 .main-layout {
@@ -137,9 +139,8 @@ body {
 
 .navbar-custom {
   background: linear-gradient(
-    to bottom,
     rgba(0, 0, 0, 0.8) 0%,
-    transparent 100%
+    rgba(0, 0, 0, 0) 100%
   ) !important;
   padding: 15px 0 !important;
 }
@@ -302,7 +303,6 @@ body {
 .horizontal-scroll-item {
   flex: 0 0 calc(18% - 15px);
   min-width: 180px;
-  /* untuk card */
 }
 
 .search-hero {
@@ -311,7 +311,7 @@ body {
   background-position: center;
   display: flex;
   align-items: center;
-  margin-top: -100px; /* Agar naik ke belakang Navbar jika Navbar transparan */
+  margin-top: -100px;
   padding-top: 100px;
 }
 
@@ -324,7 +324,6 @@ body {
   transform: scale(1.05);
 }
 
-/* CSS untuk Slider (gunakan class yang sudah kamu pakai di Trending) */
 .horizontal-scroll-wrapper {
   display: flex;
   overflow-x: auto;
@@ -362,7 +361,6 @@ body {
   }
 }
 
-/* Movie Detail Styles */
 .movie-detail-container {
   position: relative;
   min-height: 100vh;
@@ -388,7 +386,7 @@ body {
 }
 
 .detail-poster-wrapper img {
-  border: 4px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgb(145, 145, 145);
   transition: transform 0.3s ease;
 }
 
