@@ -120,7 +120,7 @@ const List = () => {
             <Row className="g-4">
               {result && result.length > 0 ? (
                 result.map((item) => (
-                  <Col key={item.id} xs={6} md={4} lg={3}>
+                  <Col key={item.id} xs={6} md={4} lg={2}>
                     <ModernMovieCard
                       id={item.id}
                       title={item.title || item.name}
@@ -130,10 +130,10 @@ const List = () => {
                           : "https://via.placeholder.com/500x750?text=No+Poster"
                       }
                       platform={item.vote_average?.toFixed(1)}
-                      rating={item.vote_average}
+                      // rating={item.vote_average}
                       date={(
                         item.release_date || item.first_air_date
-                      )?.substring(0, 4)}
+                      )?.substring(0, 10)}
                     />
                   </Col>
                 ))
