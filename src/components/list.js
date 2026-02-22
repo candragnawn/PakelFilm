@@ -110,8 +110,8 @@ const List = () => {
         </div>
 
         {loading ? (
-          <div className="text-center py-5">
-            <div className="spinner-border text-danger" role="status">
+          <div className="text-center py-5 min-vh-100">
+            <div className="spinner-border text-danger " role="status">
               <span className="visually-hidden">Loading...</span>
             </div>
           </div>
@@ -195,4 +195,3 @@ const List = () => {
 };
 
 export default List;
-

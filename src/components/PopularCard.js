@@ -2,12 +2,18 @@ import { Container } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
+
 
 const Popular = () => {
   const [trendMovies, setMovies] = useState([]);
   const IMG_URL = (
     process.env.REACT_APP_BASEIMGURL || "https://image.tmdb.org/t/p/w1280"
   ).trim();
+  const navigate = useNavigate();
+  const handleSeeAll = () => {
+    navigate("/movie?sort=popularity.desc")
+  }
 
   useEffect(() => {
     const fetchTrending = async () => {
@@ -33,9 +39,9 @@ const Popular = () => {
           <Button
             variant="outline-light"
             className="px-3 filter-btn"
-            onClick={() => console.log("Primary")}
+            onClick={handleSeeAll}
           >
-            LIHAT SEMUA
+            SEE ALL
           </Button>
         </div>
 

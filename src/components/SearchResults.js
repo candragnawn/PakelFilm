@@ -44,7 +44,7 @@ const SearchResults = ({ query }) => {
   }
 
   return (
-    <Container className="py-6" style={{ paddingTop: "150px" }}>
+    <Container className="py-5.5" style={{ paddingTop: "150px" }}>
       <h4 className="text-white mb-4 text-uppercase letter-spacing-2">
         Search Results for: <span className="text-danger">"{query}"</span>
       </h4>

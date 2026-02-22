@@ -7,6 +7,8 @@ import robinhoodImage from "../assets/images/superhero/robinhood.jpg";
 import spidermanImage from "../assets/images/superhero/spiderman-cover.jpg";
 import supermanImage from "../assets/images/superhero/superman.jpg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 const SuperHero = () => {
   const movies = [
@@ -20,11 +22,23 @@ const SuperHero = () => {
     { id: 8, title: "SUPERMAN HERO", image: supermanImage, platform: "Sky Cinema" },
   ];
 
+  const navigate = useNavigate();
+  const handleSeeAll = () => {
+    navigate("/movie?genre=28");
+  };
+
   return (
     <div id="superhero" className="py-5">
       <Container>
-        <div className="d-flex gap-5">
+        <div className="d-flex justify-content-between align-items-center mb-4 gap-3">
           <h4 className="text-white">SUPERHERO MOVIES</h4>
+          <Button
+            variant="outline-light"
+            className="px-3 filter-btn"
+            onClick={handleSeeAll}
+          >
+            LIHAT SEMUA
+          </Button>
         </div>
 
         <div className="horizontal-scroll-wrapper">

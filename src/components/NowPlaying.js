@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
 const NowPlaying = () => {
   const [movies, setMovies] = useState([]);
   const IMG_URL =
     process.env.REACT_APP_BASEIMGURL || "https://image.tmdb.org/t/p/w1280";
+  const navigate = useNavigate();
+  const handleSeeAll = () => {  
+    navigate("/movie?sort=primary_release_date.desc");
+  };
 
   useEffect(() => {
     const fetchNowplaying = async () => {
@@ -27,14 +32,14 @@ const NowPlaying = () => {
   return (
     <div id="nowplaying" className="py-5">
       <Container>
-        <div className="d-flex gap-3 justify-content-between">
+        <div className="d-flex justify-content-between align-items-center mb-4 gap-3">
           <h4 className="text-white">NOW PLAYING</h4>
           <Button
             variant="outline-light"
             className="px-3 filter-btn"
-            onClick={() => console.log("Primary")}
+            onClick={handleSeeAll}
           >
-            LIHAT SEMUA
+            SEE ALL
           </Button>
         </div>
 
