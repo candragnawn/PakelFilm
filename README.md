@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Deafilms - Modern Movie & TV Exploration Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Available Scripts
+A premium, performance-optimized movie discovery application built with React and TMDB API. This project demonstrates high-quality UI design, efficient state management, and optimized data fetching strategies.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Key Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Dynamic Content Discovery**: Explore trending, upcoming, and popular movies and TV shows.
+- **Advanced Filtering**: Filter content by categories (Movie/TV) and genres with real-time updates.
+- **Deep Search**: Fast and responsive search functionality across the entire TMDB database.
+- **Responsive Premium UI**: Custom-styled Bootstrap components for a sleek, dark-themed cinematic experience.
+- **Efficient Navigation**: Seamless routing with `react-router-dom` and persistent active states.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Technical Highlights
 
-### `npm test`
+Focusing on performance and scalability, this project implements several advanced patterns:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### ⚡ Optimized Data Caching
+To reduce API latency and avoid redundant network requests, I implemented a custom **InMemory Cache Manager** (`MovieCache`).
+- **TTL (Time To Live)**: Cache entries automatically expire after 1 hour to ensure data freshness.
+- **Memory Efficiency**: Uses a `Map` structure for O(1) retrieval and automatic cleanup of stale data.
 
-### `npm run build`
+### 🔍 Advanced URL-Driven State
+Filtering and pagination are synchronized with the URL search parameters. This allows for:
+- **Direct Linking**: Users can share specific filtered results via URL.
+- **Browser History Support**: Full integration with back/forward buttons for intuitive navigation.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🎭 Component Design Pattern
+- **Atomic Components**: Reusable UI elements like `ModernMovieCard` to ensure consistency.
+- **Lazy Loading Strategy**: Optimized image loading to improve initial render performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 💻 Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Frontend**: React 18
+- **Styling**: Vanilla CSS, React Bootstrap (Customized)
+- **Networking**: Axios / Fetch API
+- **Routing**: React Router 7
+- **Database/API**: TMDB (The Movie Database)
 
-### `npm run eject`
+## 📦 Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/candragnawn/PakelFilm.git
+   cd PakelFilm
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Configure Environment Variables**
+   Create a `.env` file in the root directory:
+   ```env
+   REACT_APP_APIKEY=your_tmdb_api_key_here
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. **Start the development server**
+   ```bash
+   npm start
+   ```
 
-## Learn More
+## 📂 Project Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```text
+src/
+├── components/     # High-impact reusable UI components
+├── pages/          # Page-level containers (Home, Details, List)
+├── utils/          # Logic utilities (Caching, Genres mapping)
+├── assets/         # Static visual resources
+└── App.js          # Main application routing logic
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🤝 Connect with Me
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- LinkedIn: https://www.linkedin.com/in/your-profile
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

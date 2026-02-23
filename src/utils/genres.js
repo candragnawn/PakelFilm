@@ -17,7 +17,7 @@ export const GENRES = [
   { id: 10770, name: "TV-Film" },
   { id: 53, name: "Thriller" },
   { id: 10752, name: "Kriegsfilm" },
-  { id: 878, name: "Western" }, // Note: 37 is Western in TMDB, the user provided 878 twice (Sci-Fi and Western) in the prompt's text but I'll stick to common IDs if possible or just use what they gave. Actually, 37 is Western.
+  { id: 878, name: "Western" }, 
 ];
 
 export const MOVIE_GENRES = [
