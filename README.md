@@ -1,4 +1,4 @@
-# Deafilms - Modern Movie & TV Exploration Platform
+# PakelFilms - Modern Movie & TV Exploration Platform
 
 [![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
