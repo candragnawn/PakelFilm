@@ -81,7 +81,8 @@ src/
 
 ## 🤝 Connect with Me
 
-- LinkedIn: https://www.linkedin.com/in/your-profile
+- LinkedIn: www.linkedin.com/in/i-kadek-candra-gunawan-54ab16381
+
 
 
 
