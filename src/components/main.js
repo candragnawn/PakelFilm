@@ -1,11 +1,16 @@
 import { Carousel, Container, Row, Col, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
   const [movies, setMovies] = useState([]);
   const IMG_URL = (
     process.env.REACT_APP_BASEIMGURL || "https://image.tmdb.org/t/p/original"
   ).trim();
+  const navigate = useNavigate();
+  const handleExplore = () => {
+    navigate("/movie?sort=popularity")
+  };
 
   useEffect(() => {
     const fetchPopularMovies = async () => {
@@ -65,9 +70,9 @@ const HeroSection = () => {
                       <div className="d-flex gap-3">
                         <Button
                           className="btn-pill-red px-4 py-3"
-                          href="#trending"
+                          onClick={() => navigate("/all")}
                         >
-                          Explore Movies →
+                          Explore All →
                         </Button>
                       </div>
                     </Col>

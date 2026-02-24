@@ -15,7 +15,7 @@ const Trending = () => {
   ).trim();
   const navigate = useNavigate();
   const handleSeeAll = () => {
-    navigate("/movie?sort=popularity.desc");
+    navigate("/all");
   };
 
   useEffect(() => {

@@ -10,6 +10,7 @@ const List = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   const { type } = useParams();
+  
   const [searchParams, setSearchParams] = useSearchParams();
 
   const sort = searchParams.get("sort") || "popularity.desc";
@@ -35,7 +36,12 @@ const List = () => {
 
       setLoading(true);
       try {
-        const url = `${BASE_URL}/discover/${currentType}?api_key=${API_KEY}&sort_by=${sort}${genre ? `&with_genres=${genre}` : ""}&page=${page}`;
+        let url;
+        if (type === "all") {
+          url = `${BASE_URL}/trending/all/day?api_key=${API_KEY}&sort_by=${sort}${genre ? `&with_genres=${genre}` : ""}&page=${page}`;
+        } else {
+          url = `${BASE_URL}/discover/${currentType}?api_key=${API_KEY}&sort_by=${sort}${genre ? `&with_genres=${genre}` : ""}&page=${page}`;
+        }
         console.log("Fetching from URL:", url);
 
         const response = await fetch(url);
@@ -81,31 +87,35 @@ const List = () => {
       <Container>
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-5 gap-3">
           <div className="d-flex gap-2 w-100 w-md-auto">
-            <Form.Select
-              className="search-input-modern"
-              style={{ width: "180px" }}
-              value={genre}
-              onChange={(e) => updateParam("genre", e.target.value)}
-            >
-              <option value="">ALL GENRES</option>
-              {genresList.map((g) => (
-                <option key={g.id} value={g.id}>
-                  {g.name.toUpperCase()}
-                </option>
-              ))}
-            </Form.Select>
+            {type !== "all" && (
+              <>
+                <Form.Select
+                  className="search-input-modern"
+                  style={{ width: "180px" }}
+                  value={genre}
+                  onChange={(e) => updateParam("genre", e.target.value)}
+                >
+                  <option value="">ALL GENRES</option>
+                  {genresList.map((g) => (
+                    <option key={g.id} value={g.id}>
+                      {g.name.toUpperCase()}
+                    </option>
+                  ))}
+                </Form.Select>
 
-            <Form.Select
-              className="search-input-modern"
-              style={{ width: "180px" }}
-              value={sort}
-              onChange={(e) => updateParam("sort", e.target.value)}
-            >
-              <option value="popularity.desc">POPULARITY</option>
-              <option value="vote_average.desc">TOP RATED</option>
-              <option value="primary_release_date.desc">NEWEST</option>
-              <option value="revenue.desc">BOX OFFICE</option>
-            </Form.Select>
+                <Form.Select
+                  className="search-input-modern"
+                  style={{ width: "180px" }}
+                  value={sort}
+                  onChange={(e) => updateParam("sort", e.target.value)}
+                >
+                  <option value="popularity.desc">POPULARITY</option>
+                  <option value="vote_average.desc">TOP RATED</option>
+                  <option value="primary_release_date.desc">NEWEST</option>
+                  <option value="revenue.desc">BOX OFFICE</option>
+                </Form.Select>
+              </>
+            )}
           </div>
         </div>
 

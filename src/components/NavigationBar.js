@@ -38,6 +38,7 @@ const NavigationBar = () => {
         </Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link as={Link} to="/" className={isActive("/") ? "active-nav-link" : ""}>HOME</Nav.Link>
+          <Nav.Link as={Link} to="/all" className={isActive("/all") ? "active-nav-link" : ""}>ALL</Nav.Link>
           <Nav.Link as={Link} to="/movie" className={isActive("/movie") ? "active-nav-link" : ""}>MOVIE</Nav.Link>
           <Nav.Link as={Link} to="/tv" className={isActive("/tv") ? "active-nav-link" : ""}>TV SHOWS</Nav.Link>
         </Nav>
