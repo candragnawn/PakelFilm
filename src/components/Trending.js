@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 const Trending = () => {
   const [trendMovies, setMovies] = useState([]);
   const [timeWindow, setTimeWindow] = useState("day");
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const IMG_URL = (
     process.env.REACT_APP_BASEIMGURL || "https://image.tmdb.org/t/p/w1280"
   ).trim();
