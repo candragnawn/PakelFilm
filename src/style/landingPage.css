@@ -431,7 +431,6 @@ body {
   opacity: 0.3;
 }
 
-/* Ensure dropdowns inside the list page look clean */
 .search-input-modern:focus {
   background-color: #111 !important;
   border-color: #6d1518 !important;

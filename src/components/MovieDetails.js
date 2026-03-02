@@ -25,7 +25,7 @@ const MovieDetails = ({ movieId }) => {
         setLoading(false);
         return;
       }
-
+      
       setLoading(true);
       try {
         const detailRes = await fetch(

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import NavigationBar from "../components/NavigationBar";
-import List from "../components/List";
+import List from "../components/List.";
 
 const ListPage = () => {
   return (
