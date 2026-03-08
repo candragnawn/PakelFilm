@@ -8,9 +8,6 @@ const HeroSection = () => {
     process.env.REACT_APP_BASEIMGURL || "https://image.tmdb.org/t/p/original"
   ).trim();
   const navigate = useNavigate();
-  const handleExplore = () => {
-    navigate("/movie?sort=popularity")
-  };
 
   useEffect(() => {
     const fetchPopularMovies = async () => {

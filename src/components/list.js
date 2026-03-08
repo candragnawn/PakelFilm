@@ -10,7 +10,7 @@ const List = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   const { type } = useParams();
-  
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const sort = searchParams.get("sort") || "popularity.desc";
@@ -63,7 +63,7 @@ const List = () => {
 
     fetchResults();
     window.scrollTo(0, 0);
-  }, [currentType, sort, genre, page, API_KEY]);
+  }, [currentType, sort, genre, page, API_KEY, type]);
 
   const updateParam = (key, value) => {
     const newParams = new URLSearchParams(searchParams);
