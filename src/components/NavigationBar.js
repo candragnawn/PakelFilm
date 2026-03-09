@@ -31,29 +31,32 @@ const NavigationBar = () => {
   };
 
   return (
-    <Navbar variant="dark" fixed="top" className="navbar-custom" bg="transparent">
+    <Navbar variant="dark" fixed="top" className="navbar-custom" expand="lg">
       <Container>
         <Navbar.Brand href="/" className="fw-medium">
           PAKELFILMS
         </Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link as={Link} to="/" className={isActive("/") ? "active-nav-link" : ""}>HOME</Nav.Link>
-          <Nav.Link as={Link} to="/all" className={isActive("/all") ? "active-nav-link" : ""}>ALL</Nav.Link>
-          <Nav.Link as={Link} to="/movie" className={isActive("/movie") ? "active-nav-link" : ""}>MOVIE</Nav.Link>
-          <Nav.Link as={Link} to="/tv" className={isActive("/tv") ? "active-nav-link" : ""}>TV SHOWS</Nav.Link>
-        </Nav>
-        <Form className="d-flex align-items-center">
-          <div className="search-wrapper">
-            <i className="bi bi-search search-icon"></i>
-            <Form.Control
-              type="search"
-              placeholder="Search for movies or TV shows"
-              value={query}
-              onChange={handleSearch}
-              className="search-input-modern"
-            />
-          </div>
-        </Form>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/" className={isActive("/") ? "active-nav-link" : ""}>HOME</Nav.Link>
+            <Nav.Link as={Link} to="/all" className={isActive("/all") ? "active-nav-link" : ""}>ALL</Nav.Link>
+            <Nav.Link as={Link} to="/movie" className={isActive("/movie") ? "active-nav-link" : ""}>MOVIE</Nav.Link>
+            <Nav.Link as={Link} to="/tv" className={isActive("/tv") ? "active-nav-link" : ""}>TV SHOWS</Nav.Link>
+          </Nav>
+          <Form className="d-flex align-items-center mt-3 mt-lg-0">
+            <div className="search-wrapper w-100">
+              <i className="bi bi-search search-icon"></i>
+              <Form.Control
+                type="search"
+                placeholder="Search for movies or TV shows"
+                value={query}
+                onChange={handleSearch}
+                className="search-input-modern w-100"
+              />
+            </div>
+          </Form>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

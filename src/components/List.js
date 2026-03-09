@@ -120,11 +120,13 @@ const List = () => {
         </div>
 
         {loading ? (
-          <div className="text-center py-5 min-vh-100">
-            <div className="spinner-border text-danger " role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
+          <Row className="g-4">
+            {[...Array(12)].map((_, i) => (
+              <Col key={i} xs={6} md={4} lg={2}>
+                <div className="skeleton-card"></div>
+              </Col>
+            ))}
+          </Row>
         ) : (
           <>
             <Row className="g-4">
