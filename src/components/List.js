@@ -146,6 +146,7 @@ const List = () => {
                       date={(
                         item.release_date || item.first_air_date
                       )?.substring(0, 10)}
+                      mediaType={type === "all" ? (item.media_type || "movie") : currentType}
                     />
                   </Col>
                 ))

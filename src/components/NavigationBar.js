@@ -1,12 +1,13 @@
-import { Navbar, Container, Nav, Form } from "react-bootstrap";
+import { Navbar, Container, Nav, Form, Dropdown } from "react-bootstrap";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const NavigationBar = () => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   const isActive = (path) => {
     if (path === "/") return location.pathname === "/";
@@ -30,37 +31,80 @@ const NavigationBar = () => {
     }, 500);
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
-    <Navbar variant="dark" fixed="top" className="navbar-custom pb-2 pb-lg-3" expand="lg">
-      <Container className="flex-column flex-lg-row align-items-stretch align-items-lg-center">
-        <div className="d-flex justify-content-between align-items-center w-100 w-lg-auto mb-2 mb-lg-0">
-          <Navbar.Brand href="/" className="fw-medium m-0">
-            PAKELFILMS
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0 px-0" />
-        </div>
-        
-        <Navbar.Collapse id="basic-navbar-nav" className="flex-grow-0 order-3 order-lg-2">
-          <Nav className="me-auto mb-2 mb-lg-0">
+    <Navbar variant="dark" fixed="top" className="navbar-custom" expand="lg">
+      <Container>
+        <Navbar.Brand href="/" className="fw-medium">
+          PAKELFILMS
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
             <Nav.Link as={Link} to="/" className={isActive("/") ? "active-nav-link" : ""}>HOME</Nav.Link>
             <Nav.Link as={Link} to="/all" className={isActive("/all") ? "active-nav-link" : ""}>ALL</Nav.Link>
             <Nav.Link as={Link} to="/movie" className={isActive("/movie") ? "active-nav-link" : ""}>MOVIE</Nav.Link>
             <Nav.Link as={Link} to="/tv" className={isActive("/tv") ? "active-nav-link" : ""}>TV SHOWS</Nav.Link>
           </Nav>
-        </Navbar.Collapse>
+          <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+            <Form className="d-flex align-items-center">
+              <div className="search-wrapper w-100">
+                <i className="bi bi-search search-icon"></i>
+                <Form.Control
+                  type="search"
+                  placeholder="Search for movies or TV shows"
+                  value={query}
+                  onChange={handleSearch}
+                  className="search-input-modern w-100"
+                />
+              </div>
+            </Form>
 
-        <Form className="d-flex w-100 w-lg-auto ms-lg-auto order-2 order-lg-3 mt-1 mt-lg-0">
-          <div className="search-wrapper w-100">
-            <i className="bi bi-search search-icon"></i>
-            <Form.Control
-              type="search"
-              placeholder="Search..."
-              value={query}
-              onChange={handleSearch}
-              className="search-input-modern w-100 bg-dark border-0 text-white placeholder-gray"
-            />
+            {user ? (
+              <Dropdown align="end">
+                <Dropdown.Toggle
+                  variant="link"
+                  className="nav-user-btn p-0"
+                  id="user-dropdown"
+                >
+                  <div className="nav-avatar">
+                    {user.name?.charAt(0).toUpperCase()}
+                  </div>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="nav-dropdown-menu">
+                  <div className="nav-dropdown-header">
+                    <strong>{user.name}</strong>
+                    <small className="d-block text-secondary">{user.email}</small>
+                  </div>
+                  <Dropdown.Divider />
+                  <Dropdown.Item
+                    as={Link}
+                    to="/profile"
+                    className="nav-dropdown-item"
+                  >
+                    Profil Saya
+                  </Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item
+                    onClick={handleLogout}
+                    className="nav-dropdown-item text-danger"
+                  >
+                    Keluar
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : (
+              <Link to="/login" className="nav-login-btn">
+                MASUK
+              </Link>
+            )}
           </div>
-        </Form>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
