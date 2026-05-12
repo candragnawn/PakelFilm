@@ -80,6 +80,39 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem(DB_KEYS.CURRENT_USER);
   };
 
+  // Update user profile
+  const updateUser = (newName, newPassword, currentPassword) => {
+    if (!user) return { success: false, message: "User tidak ditemukan!" };
+
+    const users = db.get(DB_KEYS.USERS) || [];
+    const userIndex = users.findIndex((u) => u.id === user.id);
+
+    if (userIndex === -1) {
+      return { success: false, message: "User tidak ditemukan!" };
+    }
+
+    // Verify current password
+    if (users[userIndex].password !== currentPassword) {
+      return { success: false, message: "Password lama salah!" };
+    }
+
+    // Update user data
+    users[userIndex].name = newName;
+    if (newPassword) {
+      users[userIndex].password = newPassword;
+    }
+
+    db.set(DB_KEYS.USERS, users);
+
+    // Update current user in state and localStorage
+    const updatedUser = { ...users[userIndex] };
+    delete updatedUser.password; // Don't store password in state
+    setUser(updatedUser);
+    db.set(DB_KEYS.CURRENT_USER, updatedUser);
+
+    return { success: true, message: "Profil berhasil diperbarui!" };
+  };
+
   // Favorites
   const getFavorites = () => {
     if (!user) return [];
@@ -202,6 +235,7 @@ export const AuthProvider = ({ children }) => {
         register,
         login,
         logout,
+        updateUser,
         getFavorites,
         toggleFavorite,
         isFavorite,

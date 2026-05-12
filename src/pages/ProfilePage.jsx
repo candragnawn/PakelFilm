@@ -7,10 +7,15 @@ import ModernMovieCard from "../components/ModernMovieCard";
 import "../style/landingPage.css";
 
 const ProfilePage = () => {
-  const { user, getFavorites, getUserReviews } = useAuth();
+  const { user, getFavorites, getUserReviews, updateUser } = useAuth();
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [newName, setNewName] = useState(user?.name || "");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -21,6 +26,7 @@ const ProfilePage = () => {
     }
     setFavorites(getFavorites());
     setReviews(getUserReviews());
+    setNewName(user.name);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
@@ -32,6 +38,32 @@ const ProfilePage = () => {
       month: "long",
       year: "numeric",
     });
+  };
+
+  const handleUpdateProfile = (e) => {
+    e.preventDefault();
+    setMessage("");
+
+    if (!newName.trim()) {
+      setMessage("Nama tidak boleh kosong!");
+      return;
+    }
+
+    if (newPassword && newPassword !== confirmPassword) {
+      setMessage("Password baru dan konfirmasi tidak cocok!");
+      return;
+    }
+
+    const result = updateUser(newName.trim(), newPassword || null, currentPassword);
+
+    if (result.success) {
+      setMessage("Profil berhasil diperbarui!");
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+    } else {
+      setMessage(result.message);
+    }
   };
 
   const renderStars = (value) => {
@@ -92,6 +124,11 @@ const ProfilePage = () => {
             <Nav.Item>
               <Nav.Link eventKey="reviews" className="profile-tab-link">
                 ★ Review ({reviews.length})
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="settings" className="profile-tab-link">
+                ⚙ Pengaturan Akun
               </Nav.Link>
             </Nav.Item>
           </Nav>
@@ -166,6 +203,76 @@ const ProfilePage = () => {
               )}
             </Tab.Pane>
           </Tab.Content>
+
+          {/* Settings Tab */}
+          <Tab.Pane eventKey="settings">
+            <div className="settings-form" style={{ maxWidth: "500px", margin: "0 auto" }}>
+              <h4 className="text-white mb-4">Pengaturan Akun</h4>
+              {message && (
+                <div className={`alert ${message.includes("berhasil") ? "alert-success" : "alert-danger"} mb-3`}>
+                  {message}
+                </div>
+              )}
+              <form onSubmit={handleUpdateProfile}>
+                <div className="mb-3">
+                  <label htmlFor="newName" className="form-label text-white">
+                    Nama Akun Baru
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="newName"
+                    value={newName}
+                    onChange={(e) => setNewName(e.target.value)}
+                    placeholder="Masukkan nama baru"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="currentPassword" className="form-label text-white">
+                    Password Lama (diperlukan untuk perubahan)
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="currentPassword"
+                    value={currentPassword}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    placeholder="Masukkan password lama"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="newPassword" className="form-label text-white">
+                    Password Baru (opsional)
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="newPassword"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="Masukkan password baru"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="confirmPassword" className="form-label text-white">
+                    Konfirmasi Password Baru
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="confirmPassword"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Konfirmasi password baru"
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary w-100">
+                  Simpan Perubahan
+                </button>
+              </form>
+            </div>
+          </Tab.Pane>
+
         </Tab.Container>
       </Container>
     </div>
