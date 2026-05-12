@@ -26,7 +26,7 @@ const MovieDetails = ({ movieId, mediaType = "movie" }) => {
         setLoading(false);
         return;
       }
-      
+
       setLoading(true);
       try {
         const detailRes = await fetch(
@@ -39,7 +39,7 @@ const MovieDetails = ({ movieId, mediaType = "movie" }) => {
           `${BASE_URL}/${mediaType}/${movieId}/recommendations?api_key=${API_KEY}`,
         );
         const recData = await recRes.json();
-        
+
         let finalRecs = recData.results || [];
         if (finalRecs.length === 0) {
           const similarRes = await fetch(
@@ -48,7 +48,7 @@ const MovieDetails = ({ movieId, mediaType = "movie" }) => {
           const similarData = await similarRes.json();
           finalRecs = similarData.results || [];
         }
-        
+
         setRecommendations(finalRecs);
         movieCache.set(cacheKey, { movie: detailData, recommendations: finalRecs });
       } catch (error) {
