@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import ModernMovieCard from "./ModernMovieCard";
-import { Link } from "react-router-dom";
+import FavoriteButton from "./FavoriteButton";
+import ReviewSection from "./ReviewSection";
 import { movieCache } from "../utils/movieCache";
 
-const MovieDetails = ({ movieId }) => {
+const MovieDetails = ({ movieId, mediaType = "movie" }) => {
   const [movie, setMovie] = useState(null);
   const [recommendations, setRecommendations] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ const MovieDetails = ({ movieId }) => {
 
   useEffect(() => {
     const fetchMovieData = async () => {
-      const cacheKey = `movie_${movieId}`;
+      const cacheKey = `${mediaType}_${movieId}`;
       const cached = movieCache.get(cacheKey);
 
       if (cached) {
@@ -29,20 +30,20 @@ const MovieDetails = ({ movieId }) => {
       setLoading(true);
       try {
         const detailRes = await fetch(
-          `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`,
+          `${BASE_URL}/${mediaType}/${movieId}?api_key=${API_KEY}`,
         );
         const detailData = await detailRes.json();
         setMovie(detailData);
 
         const recRes = await fetch(
-          `${BASE_URL}/movie/${movieId}/recommendations?api_key=${API_KEY}`,
+          `${BASE_URL}/${mediaType}/${movieId}/recommendations?api_key=${API_KEY}`,
         );
         const recData = await recRes.json();
         
         let finalRecs = recData.results || [];
         if (finalRecs.length === 0) {
           const similarRes = await fetch(
-            `${BASE_URL}/movie/${movieId}/similar?api_key=${API_KEY}`,
+            `${BASE_URL}/${mediaType}/${movieId}/similar?api_key=${API_KEY}`,
           );
           const similarData = await similarRes.json();
           finalRecs = similarData.results || [];
@@ -51,7 +52,7 @@ const MovieDetails = ({ movieId }) => {
         setRecommendations(finalRecs);
         movieCache.set(cacheKey, { movie: detailData, recommendations: finalRecs });
       } catch (error) {
-        console.error("Error fetching movie details:", error);
+        console.error("Error fetching details:", error);
       } finally {
         setLoading(false);
       }
@@ -60,7 +61,7 @@ const MovieDetails = ({ movieId }) => {
     if (movieId) {
       fetchMovieData();
     }
-  }, [movieId, API_KEY]);
+  }, [movieId, mediaType, API_KEY]);
 
   if (loading) {
     return (
@@ -74,8 +75,15 @@ const MovieDetails = ({ movieId }) => {
   }
 
   if (!movie) {
-    return <div className="text-white text-center">Movie not found</div>;
+    return <div className="text-white text-center">Not found</div>;
   }
+
+  // TV shows use "name" instead of "title", "first_air_date" instead of "release_date"
+  const displayTitle = movie.title || movie.name;
+  const displayDate = movie.release_date || movie.first_air_date;
+  const displayRuntime = mediaType === "tv"
+    ? (movie.episode_run_time?.[0] ? `${movie.episode_run_time[0]} min/ep` : `${movie.number_of_seasons} season${movie.number_of_seasons > 1 ? 's' : ''}`)
+    : `${movie.runtime} min`;
 
   return (
     <div className="movie-detail-container">
@@ -93,23 +101,33 @@ const MovieDetails = ({ movieId }) => {
             <div className="detail-poster-wrapper">
               <img
                 src={`${IMG_URL_POSTER}${movie.poster_path}`}
-                alt={movie.title}
+                alt={displayTitle}
                 className="img-fluid rounded-3 shadow-lg"
               />
             </div>
           </Col>
 
           <Col md={8} lg={9} className="text-white ps-md-4">
-            <div className="studio-logo mb-2">MOVIE DETAILS</div>
-            <h1 className="display-5 fw-medium mb-3">{movie.title}</h1>
+            <div className="studio-logo mb-2">{mediaType === "tv" ? "TV SHOW DETAILS" : "MOVIE DETAILS"}</div>
+            <h1 className="display-5 fw-medium mb-3">{displayTitle}</h1>
 
             <div className="meta-info d-flex gap-3 mb-4">
               <span className="rating text-warning">
                 ⭐ {movie.vote_average?.toFixed(1)}
               </span>
-              <span>{movie.release_date?.substring(0, 4)}</span>
-              <span>{movie.runtime} min</span>
+              <span>{displayDate?.substring(0, 4)}</span>
+              <span>{displayRuntime}</span>
               <span className="text-uppercase">{movie.original_language}</span>
+            </div>
+
+            {/* Favorite Button */}
+            <div className="mb-4">
+              <FavoriteButton
+                movieId={movieId}
+                mediaType={mediaType}
+                title={displayTitle}
+                posterPath={movie.poster_path}
+              />
             </div>
 
             <div className="mb-4">
@@ -135,24 +153,23 @@ const MovieDetails = ({ movieId }) => {
           </Col>
         </Row>
 
+        {/* Review Section */}
+        <ReviewSection movieId={movieId} mediaType={mediaType} />
+
         {recommendations.length > 0 && (
           <div className="mt-5">
             <h4 className="text-white mb-4">RECOMMENDATIONS</h4>
             <div className="horizontal-scroll-wrapper">
               {recommendations.map((rec, index) => (
                 <div key={index} className="horizontal-scroll-item">
-                  <Link
-                    to={`/movie/${rec.id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <ModernMovieCard
-                      id={rec.id}
-                      title={rec.title}
-                      image={`${IMG_URL_POSTER}${rec.poster_path}`}
-                      platform={rec.vote_average?.toFixed(1)}
-                      date={rec.release_date}
-                    />
-                  </Link>
+                  <ModernMovieCard
+                    id={rec.id}
+                    title={rec.title || rec.name}
+                    image={`${IMG_URL_POSTER}${rec.poster_path}`}
+                    platform={rec.vote_average?.toFixed(1)}
+                    date={rec.release_date || rec.first_air_date}
+                    mediaType={mediaType}
+                  />
                 </div>
               ))}
             </div>

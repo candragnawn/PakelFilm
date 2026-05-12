@@ -9,9 +9,11 @@ const ModernMovieCard = memo(({
   rating,
   date,
   isActive,
+  mediaType = "movie",
 }) => {
+  const detailPath = mediaType === "tv" ? `/tv/${id}` : `/movie/${id}`;
   return (
-    <Link to={`/movie/${id}`} style={{ textDecoration: "none" }}>
+    <Link to={detailPath} style={{ textDecoration: "none" }}>
       <div className={`modern-card ${isActive ? "active" : ""}`}>
         {platform && <div className="platform-badge">{platform}</div>}
         <img src={image} alt={title} className="modern-card-image" loading="lazy" />

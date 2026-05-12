@@ -63,6 +63,7 @@ const SearchResults = ({ query }) => {
                 }
                 platform={item.vote_average?.toFixed(1)}
                 date={(item.release_date || item.first_air_date)?.substring(0, 4)}
+                mediaType={item.media_type || "movie"}
               />
             </Col>
           ))}
