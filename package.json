@@ -16,6 +16,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "pakel-go": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
